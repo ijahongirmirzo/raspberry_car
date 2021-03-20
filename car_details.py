@@ -69,7 +69,7 @@ def get_distance():
     distance = 0.0
     wiringpi.digitalWrite(trig_pin, io.HIGH)
     time.sleep(0.00001)
-    wiringpi.digitalWrite(trig_pin, io.LOW)
+    wiringpi.di     gitalWrite(trig_pin, io.LOW)
 
     while wiringpi.digitalRead(echo_pin) == 0:
         start_time = time.time()
