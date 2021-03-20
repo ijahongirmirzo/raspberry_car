@@ -6,7 +6,7 @@ while get_distance() >= 30:
     forward()
 
 right()
-time.sleep(2)
+time.sleep(3.5)
 forward()
 time.sleep(2)
 stop()
