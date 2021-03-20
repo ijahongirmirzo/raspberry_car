@@ -79,7 +79,7 @@ def get_distance():
 
     distance = (end_time - start_time) * 34300 / 2
 
-    return int(distance)
+    return abs(distance)
 
 def get_trace():
     left_tracer = wiringpi.digitalRead(left_tracer_pin)
