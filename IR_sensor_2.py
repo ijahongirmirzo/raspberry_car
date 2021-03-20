@@ -3,11 +3,12 @@ import time
 
 setup()
 while True:
-    if get_distance() > 50:
+    distance = get_distance()
+    if distance > 50:
         forward()
-    elif get_distance() < 50:
+    elif distance < 50:
         backward()
-    elif get_distance() == 50:
+    elif distance == 50:
         stop()
         time.sleep(0.5)
 
