@@ -7,7 +7,7 @@ while True:
         forward()
     elif get_distance() < 50:
         backward()
-    elif get_distance() != 50:
+    elif get_distance() == 50:
         stop()
 
     
