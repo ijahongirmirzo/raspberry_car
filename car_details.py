@@ -64,7 +64,7 @@ def backward():
     wiringpi.digitalWrite(motor_3, io.LOW)
     wiringpi.digitalWrite(motor_4, io.HIGH)
 
-def get_distance():
+def get_distance_by():
     start_time, end_time = 0, 0
     distance = 0.0
     wiringpi.digitalWrite(trig_pin, io.HIGH)
