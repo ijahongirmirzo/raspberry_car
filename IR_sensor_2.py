@@ -7,8 +7,7 @@ while get_distance() != 50:
         forward()
     elif get_distance() < 50:
         backward()
-    else:
-        break
+
 
 stop()
 
