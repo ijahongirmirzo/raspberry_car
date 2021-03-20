@@ -9,6 +9,6 @@ while True:
         backward()
     elif get_distance() == 50:
         stop()
-    time.sleep(0.5)
+        time.sleep(0.5)
 
     
