@@ -14,7 +14,7 @@ left_tracer_pin = 10
 right_tracer_pin = 11
 
 STOP = 0
-STREIGHT = 1
+STRAIGHT = 1
 RIGHT = 2
 LEFT = 3
 
@@ -99,7 +99,7 @@ def get_trace():
     elif right_tracer == white and left_tracer == not_white:
         return LEFT
     elif right_tracer == white and left_tracer == white:
-        return STREIGHT
+        return STRAIGHT
     elif right_tracer == not_white and left_tracer == not_white:
         return STOP
     
