@@ -18,6 +18,9 @@ STRAIGHT = 1
 RIGHT = 2
 LEFT = 3
 
+WHITE = 0
+NOT_WHITE = 1
+
 
 def setup():
     wiringpi.wiringPiSetup() 
@@ -86,21 +89,18 @@ def get_distance():
     distance = (end_time - start_time) * 34300 / 2
 
     return abs(distance)
+    
 
 def get_trace():
     left_tracer = int(wiringpi.digitalRead(left_tracer_pin))
     right_tracer = int(wiringpi.digitalRead(right_tracer_pin))
-    white = 0
-    not_white = 1
-    print(left_tracer)
-    print(right_tracer)
-    if left_tracer == white and right_tracer == not_white:
+    if left_tracer == WHITE and right_tracer == NOT_WHITE:
         return RIGHT
-    elif right_tracer == white and left_tracer == not_white:
+    elif right_tracer == WHITE and left_tracer == NOT_WHITE:
         return LEFT
-    elif right_tracer == white and left_tracer == white:
+    elif right_tracer == WHITE and left_tracer == WHITE:
         return STRAIGHT
-    elif right_tracer == not_white and left_tracer == not_white:
+    elif right_tracer == NOT_WHITE and left_tracer == NOT_WHITE:
         return STOP
     
 
