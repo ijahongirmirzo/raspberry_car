@@ -18,13 +18,13 @@ def on_press(key):
             # if get_distance() >= 20:
             trace = get_trace()
             print(trace)
-            if trace == 'no':
+            if trace == STREIGHT:
                 return forward()
-            elif trace == 'left':
-                return left()
-            elif trace == 'right':
+            elif trace == RIGHT:
                 return right()
-            elif trace == 'both':
+            elif trace == LEFT:
+                return left()
+            elif trace == STOP:
                 return stop()
 
         if key == keys.down:
