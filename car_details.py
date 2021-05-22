@@ -13,6 +13,12 @@ echo_pin = 29
 left_tracer_pin = 10
 right_tracer_pin = 11
 
+STOP = 0
+STREIGHT = 1
+RIGHT = 2
+LEFT = 3
+
+
 def setup():
     wiringpi.wiringPiSetup() 
     wiringpi.pinMode(motor_1, io.OUTPUT)
@@ -82,19 +88,20 @@ def get_distance():
     return abs(distance)
 
 def get_trace():
-    left_tracer = wiringpi.digitalRead(left_tracer_pin)
-    right_tracer = wiringpi.digitalRead(right_tracer_pin)
+    left_tracer = int(wiringpi.digitalRead(left_tracer_pin))
+    right_tracer = int(wiringpi.digitalRead(right_tracer_pin))
+    white = 0
+    note_white = 1
     print(left_tracer)
     print(right_tracer)
-#     if left_tracer == 0 and right_tracer == 1:
-#         return 'left'
-#     elif right_tracer == 0 and left_tracer == 1:
-#         return 'right'
-#     elif right_tracer == 0 and left_tracer == 0:
-#         return 'both'
-#     elif right_tracer == 1 and left_tracer == 1:
-#         print('no')
-#         return 'no'
+    if left_tracer == white and right_tracer == not_white:
+        return RIGHT
+    elif right_tracer == white and left_tracer == not_white:
+        return LEFT
+    elif right_tracer == white and left_tracer == white:
+        return STREIGHT
+    elif right_tracer == not_white and left_tracer == not_white:
+        return STOP
     
 
 # if __name__ == '__main__':
