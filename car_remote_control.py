@@ -1,5 +1,5 @@
 from pynput import keyboard
-from car_motor_control import *
+from car_details import *
 import time
 
 keys = keyboard.Key
