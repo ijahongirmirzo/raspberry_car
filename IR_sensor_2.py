@@ -1,5 +1,4 @@
 from car_details import *
-import time
 detected_line_count = 0
 while True:
   trace = get_trace()
