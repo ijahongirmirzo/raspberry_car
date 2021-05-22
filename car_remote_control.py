@@ -18,7 +18,7 @@ def on_press(key):
             # if get_distance() >= 20:
             trace = get_trace()
             print(trace)
-            if trace == STREIGHT:
+            if trace == STRAIGHT:
                 return forward()
             elif trace == RIGHT:
                 return right()
