@@ -1,10 +1,9 @@
 from car_details import *
-detected_line_count = 0
+forward()
 while True:
   trace = get_trace()
-  if trace == STRAIGHT:
+  if trace == STOP:
     detected_line_count = detected_line_count + 1
   if detected_line_count >= 2:
     stop()
     break
-  forward()
