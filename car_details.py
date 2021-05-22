@@ -91,7 +91,7 @@ def get_trace():
     left_tracer = int(wiringpi.digitalRead(left_tracer_pin))
     right_tracer = int(wiringpi.digitalRead(right_tracer_pin))
     white = 0
-    note_white = 1
+    not_white = 1
     print(left_tracer)
     print(right_tracer)
     if left_tracer == white and right_tracer == not_white:
