@@ -86,15 +86,15 @@ def get_trace():
     right_tracer = wiringpi.digitalRead(right_tracer_pin)
     print(left_tracer)
     print(right_tracer)
-    if left_tracer == 0 and right_tracer == 1:
-        return 'left'
-    elif right_tracer == 0 and left_tracer == 1:
-        return 'right'
-    elif right_tracer == 0 and left_tracer == 0:
-        return 'both'
-    elif right_tracer == 1 and left_tracer == 1:
-        print('no')
-        return 'no'
+#     if left_tracer == 0 and right_tracer == 1:
+#         return 'left'
+#     elif right_tracer == 0 and left_tracer == 1:
+#         return 'right'
+#     elif right_tracer == 0 and left_tracer == 0:
+#         return 'both'
+#     elif right_tracer == 1 and left_tracer == 1:
+#         print('no')
+#         return 'no'
     
 
 # if __name__ == '__main__':
