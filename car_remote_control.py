@@ -15,18 +15,7 @@ def on_press(key):
         PRESSED_KEYS_COUNT = PRESSED_KEYS_COUNT + 1
         print("release count %s" % PRESSED_KEYS_COUNT)
         if key == keys.up:
-            # if get_distance() >= 20:
-            trace = get_trace()
-            print(trace)
-            if trace == STRAIGHT:
-                return forward()
-            elif trace == RIGHT:
-                return right()
-            elif trace == LEFT:
-                return left()
-            elif trace == STOP:
-                return stop()
-
+            return forward()
         if key == keys.down:
             return backward()
         if key == keys.right:
