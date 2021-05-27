@@ -74,9 +74,9 @@ def smooth_left():
 
 
 def slow_forward():
-    wiringpi.softPwmWrite(MOTOR_1, MAX_SPEED)
+    wiringpi.softPwmWrite(MOTOR_1, 200)
     wiringpi.softPwmWrite(MOTOR_2, MIN_SPEED)
-    wiringpi.softPwmWrite(MOTOR_3, MAX_SPEED)
+    wiringpi.softPwmWrite(MOTOR_3, 200)
     wiringpi.softPwmWrite(MOTOR_4, MIN_SPEED)
 
 
