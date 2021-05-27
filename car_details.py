@@ -18,9 +18,11 @@ STRAIGHT = 1
 RIGHT = 2
 LEFT = 3
 
-WHITE = 0
-NOT_WHITE = 1
-
+WHITE = 1
+NOT_WHITE = 0
+#
+# WHITE = 0
+# NOT_WHITE = 1
 
 def setup():
     wiringpi.wiringPiSetup()
