@@ -5,6 +5,7 @@ keys = keyboard.Key
 
 
 def on_press(key):
+    setup()
     print("%s is pressed" % key)
     if key == keys.up:
         return forward()
