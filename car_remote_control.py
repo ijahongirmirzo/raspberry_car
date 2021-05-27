@@ -24,7 +24,7 @@ def on_press(key):
             elif trace == STOP:
                 return stop()
             elif trace == STRAIGHT:
-                return forward()
+                return slow_forward()
             return forward()
         if key == keys.down:
             return backward()

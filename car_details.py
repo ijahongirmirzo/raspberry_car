@@ -46,6 +46,11 @@ def forward():
     wiringpi.digitalWrite(motor_3, io.HIGH)
     wiringpi.digitalWrite(motor_4, io.LOW)
 
+def slow_forward():
+    motor1 = io.PWM(motor_1, 100)
+    motor1.start(0)
+    motor1.ChangeDutyCycle(0)
+
 
 def stop():
     print('stop')
