@@ -24,14 +24,14 @@ def on_press(key):
             elif trace == STOP:
                 return stop()
             elif trace == STRAIGHT:
-                return slow_forward()
+                return forward()
             return forward()
         if key == keys.down:
             return backward()
         if key == keys.right:
             return right()
         if key == keys.left:
-            return left()
+            return smooth_left()
 
 
 def on_release(key):

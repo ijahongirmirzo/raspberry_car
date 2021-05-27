@@ -20,6 +20,9 @@ LEFT = 3
 
 WHITE = 1
 NOT_WHITE = 0
+
+MIN_SPEED = 0
+MAX_SPEED = 50
 #
 # WHITE = 0
 # NOT_WHITE = 1
@@ -30,6 +33,11 @@ def setup():
     wiringpi.pinMode(motor_2, io.OUTPUT)
     wiringpi.pinMode(motor_3, io.OUTPUT)
     wiringpi.pinMode(motor_4, io.OUTPUT)
+
+    wiringpi.softPwmCreate(motor_1, MIN_SPEED, MAX_SPEED)
+    wiringpi.softPwmCreate(motor_2, MIN_SPEED, MAX_SPEED)
+    wiringpi.softPwmCreate(motor_3, MIN_SPEED, MAX_SPEED)
+    wiringpi.softPwmCreate(motor_4, MIN_SPEED, MAX_SPEED)
 
     wiringpi.pinMode(trig_pin, io.OUTPUT)
     wiringpi.pinMode(echo_pin, io.INPUT)
@@ -45,12 +53,6 @@ def forward():
     wiringpi.digitalWrite(motor_2, io.LOW)
     wiringpi.digitalWrite(motor_3, io.HIGH)
     wiringpi.digitalWrite(motor_4, io.LOW)
-
-def slow_forward():
-    motor1 = io.PWM(motor_1, 100)
-    motor1.start(0)
-    motor1.ChangeDutyCycle(0)
-
 
 def stop():
     print('stop')
@@ -82,6 +84,12 @@ def backward():
     wiringpi.digitalWrite(motor_2, io.HIGH)
     wiringpi.digitalWrite(motor_3, io.LOW)
     wiringpi.digitalWrite(motor_4, io.HIGH)
+
+def smooth_left():
+    wiringpi.softPwmWrite(motor_1, MAX_SPEED/8)
+    wiringpi.softPwmWrite(motor_2, MAX_SPEED)
+    wiringpi.softPwmWrite(motor_3, MAX_SPEED)
+    wiringpi.softPwmWrite(motor_4, MIN_SPEED)
 
 
 def get_distance():
