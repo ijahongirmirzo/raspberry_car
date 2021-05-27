@@ -9,10 +9,10 @@ io = wiringpi.GPIO(wiringpi.GPIO.WPI_MODE_PINS)
 
 def setup():
     wiringpi.wiringPiSetup()
-    wiringpi.pinMode(MOTOR_1, io.PWM_OUTPUT)
-    wiringpi.pinMode(MOTOR_2, io.OUTPUT)
-    wiringpi.pinMode(MOTOR_3, io.OUTPUT)
-    wiringpi.pinMode(MOTOR_4, io.OUTPUT)
+    wiringpi.pinMode(MOTOR_1, io.SOFT_PWM_OUTPUT)
+    wiringpi.pinMode(MOTOR_2, io.SOFT_PWM_OUTPUT)
+    wiringpi.pinMode(MOTOR_3, io.SOFT_PWM_OUTPUT)
+    wiringpi.pinMode(MOTOR_4, io.SOFT_PWM_OUTPUT)
 
     wiringpi.softPwmCreate(MOTOR_1, MIN_SPEED, MAX_SPEED)
     wiringpi.softPwmCreate(MOTOR_2, MIN_SPEED, MAX_SPEED)
@@ -74,11 +74,10 @@ def smooth_left():
 
 
 def slow_forward():
-    wiringpi.pwmWrite(MOTOR_1, 5)
-    wiringpi.digitalWrite(MOTOR_1, io.HIGH)
-    wiringpi.digitalWrite(MOTOR_2, io.LOW)
-    wiringpi.digitalWrite(MOTOR_3, io.HIGH)
-    wiringpi.digitalWrite(MOTOR_4, io.LOW)
+    wiringpi.softPwmWrite(MOTOR_1, 100)
+    wiringpi.softPwmWrite(MOTOR_2, MIN_SPEED)
+    wiringpi.softPwmWrite(MOTOR_3, MAX_SPEED)
+    wiringpi.softPwmWrite(MOTOR_4, MIN_SPEED)
 
 
 def get_distance():
