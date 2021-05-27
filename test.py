@@ -1,8 +1,10 @@
 import time
 
-from car_details import slow_forward, stop, setup
+from car_details import forward, stop, setup, smooth_left
 
 setup()
-slow_forward()
-time.sleep(10)
+forward()
+time.sleep(5)
+smooth_left()
+time.sleep(2)
 stop()
