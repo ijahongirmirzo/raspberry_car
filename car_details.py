@@ -9,10 +9,10 @@ io = wiringpi.GPIO(wiringpi.GPIO.WPI_MODE_PINS)
 
 def setup():
     wiringpi.wiringPiSetup()
-    wiringpi.pinMode(MOTOR_1, io.SOFT_PWM_OUTPUT)
-    wiringpi.pinMode(MOTOR_2, io.SOFT_PWM_OUTPUT)
-    wiringpi.pinMode(MOTOR_3, io.SOFT_PWM_OUTPUT)
-    wiringpi.pinMode(MOTOR_4, io.SOFT_PWM_OUTPUT)
+    wiringpi.pinMode(MOTOR_1, io.OUTPUT)
+    wiringpi.pinMode(MOTOR_2, io.OUTPUT)
+    wiringpi.pinMode(MOTOR_3, io.OUTPUT)
+    wiringpi.pinMode(MOTOR_4, io.OUTPUT)
 
     wiringpi.softPwmCreate(MOTOR_1, MIN_SPEED, MAX_SPEED)
     wiringpi.softPwmCreate(MOTOR_2, MIN_SPEED, MAX_SPEED)
