@@ -5,12 +5,13 @@ import time
 keys = keyboard.Key
 PRESSED_KEYS_COUNT = 0
 
+
 def on_press(key):
     if not hasattr(globals, 'PRESSED_KEYS_COUNT'):
         print('initialized on press')
         global PRESSED_KEYS_COUNT
         PRESSED_KEYS_COUNT = 0
-    print ("%s is pressed" % key)
+    print("%s is pressed" % key)
     if key in [keys.up, keys.down, keys.right, keys.left]:
         PRESSED_KEYS_COUNT = PRESSED_KEYS_COUNT + 1
         print("release count %s" % PRESSED_KEYS_COUNT)
@@ -23,14 +24,13 @@ def on_press(key):
         if key == keys.left:
             return left()
 
-    
 
 def on_release(key):
     if not hasattr(globals, 'PRESSED_KEYS_COUNT'):
         print('initialized on release')
         global PRESSED_KEYS_COUNT
         PRESSED_KEYS_COUNT = 0
-    print ("%s is released" % key)
+    print("%s is released" % key)
     if key in [keys.up, keys.down, keys.right, keys.left]:
         print("release count %s" % PRESSED_KEYS_COUNT)
         PRESSED_KEYS_COUNT = PRESSED_KEYS_COUNT - 1
@@ -45,6 +45,6 @@ if __name__ == '__main__':
     #     print(get_distance())
     #     time.sleep(0.5)
     with keyboard.Listener(
-        on_press=on_press,
-        on_release=on_release) as listener:
+            on_press=on_press,
+            on_release=on_release) as listener:
         listener.join()

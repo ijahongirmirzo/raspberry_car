@@ -23,7 +23,7 @@ NOT_WHITE = 1
 
 
 def setup():
-    wiringpi.wiringPiSetup() 
+    wiringpi.wiringPiSetup()
     wiringpi.pinMode(motor_1, io.OUTPUT)
     wiringpi.pinMode(motor_2, io.OUTPUT)
     wiringpi.pinMode(motor_3, io.OUTPUT)
@@ -36,7 +36,6 @@ def setup():
     wiringpi.pinMode(right_tracer_pin, io.INPUT)
 
 
-
 def forward():
     # Going forwards
     print('forward')
@@ -45,12 +44,14 @@ def forward():
     wiringpi.digitalWrite(motor_3, io.HIGH)
     wiringpi.digitalWrite(motor_4, io.LOW)
 
+
 def stop():
     print('stop')
     wiringpi.digitalWrite(motor_1, io.LOW)
     wiringpi.digitalWrite(motor_2, io.LOW)
     wiringpi.digitalWrite(motor_3, io.LOW)
     wiringpi.digitalWrite(motor_4, io.LOW)
+
 
 def right():
     print('right')
@@ -59,6 +60,7 @@ def right():
     wiringpi.digitalWrite(motor_3, io.LOW)
     wiringpi.digitalWrite(motor_4, io.HIGH)
 
+
 def left():
     print('left')
     wiringpi.digitalWrite(motor_1, io.LOW)
@@ -66,12 +68,14 @@ def left():
     wiringpi.digitalWrite(motor_3, io.HIGH)
     wiringpi.digitalWrite(motor_4, io.LOW)
 
+
 def backward():
     print('backward')
     wiringpi.digitalWrite(motor_1, io.LOW)
     wiringpi.digitalWrite(motor_2, io.HIGH)
     wiringpi.digitalWrite(motor_3, io.LOW)
     wiringpi.digitalWrite(motor_4, io.HIGH)
+
 
 def get_distance():
     start_time, end_time = 0, 0
@@ -89,7 +93,7 @@ def get_distance():
     distance = (end_time - start_time) * 34300 / 2
 
     return abs(distance)
-    
+
 
 def get_trace():
     left_tracer = int(wiringpi.digitalRead(left_tracer_pin))
@@ -102,7 +106,6 @@ def get_trace():
         return STRAIGHT
     elif right_tracer == NOT_WHITE and left_tracer == NOT_WHITE:
         return STOP
-    
 
 # if __name__ == '__main__':
 #     setup()
