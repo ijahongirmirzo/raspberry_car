@@ -4,7 +4,7 @@ from constants import *
 
 
 def setup():
-    GPIO.setmode(GPIO.BCM)
+    GPIO.setmode(GPIO.BOARD)
     GPIO.setup(MOTOR_1, GPIO.OUT)
     GPIO.setup(MOTOR_2, GPIO.OUT)
     GPIO.setup(MOTOR_3, GPIO.OUT)
