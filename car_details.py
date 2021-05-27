@@ -86,7 +86,7 @@ def backward():
     wiringpi.digitalWrite(motor_4, io.HIGH)
 
 def smooth_left():
-    wiringpi.softPwmWrite(motor_1, MAX_SPEED/8)
+    wiringpi.softPwmWrite(motor_1, int(MAX_SPEED/8))
     wiringpi.softPwmWrite(motor_2, MAX_SPEED)
     wiringpi.softPwmWrite(motor_3, MAX_SPEED)
     wiringpi.softPwmWrite(motor_4, MIN_SPEED)
