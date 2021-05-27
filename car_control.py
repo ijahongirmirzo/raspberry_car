@@ -42,7 +42,9 @@ def left():
 def destroy():
     GPIO.cleanup()
 
+
 if __name__ == '__main__':
+    print('started')
     setup()
     forward()
     backward()
