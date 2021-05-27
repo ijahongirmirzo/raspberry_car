@@ -1,5 +1,7 @@
 from car_details import *
-import time
+
+from constants import STOP, STRAIGHT, RIGHT, LEFT
+
 while True:
   trace = get_trace()
   print(trace)

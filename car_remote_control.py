@@ -1,6 +1,7 @@
 from pynput import keyboard
 from car_details import *
-import time
+
+from constants import STOP, STRAIGHT, RIGHT, LEFT
 
 keys = keyboard.Key
 PRESSED_KEYS_COUNT = 0
@@ -16,16 +17,17 @@ def on_press(key):
         PRESSED_KEYS_COUNT = PRESSED_KEYS_COUNT + 1
         print("release count %s" % PRESSED_KEYS_COUNT)
         if key == keys.up:
-            trace = get_trace()
-            if trace == RIGHT:
-                return right()
-            elif trace == LEFT:
-                return left()
-            elif trace == STOP:
-                return stop()
-            elif trace == STRAIGHT:
-                return forward()
-            return forward()
+            return slow_forward()
+            # trace = get_trace()
+            # if trace == RIGHT:
+            #     return right()
+            # elif trace == LEFT:
+            #     return left()
+            # elif trace == STOP:
+            #     return stop()
+            # elif trace == STRAIGHT:
+            #     return forward()
+            # return forward()
         if key == keys.down:
             return backward()
         if key == keys.right:

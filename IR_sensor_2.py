@@ -1,4 +1,6 @@
 from car_details import *
+from constants import STOP
+
 forward()
 while True:
   trace = get_trace()
