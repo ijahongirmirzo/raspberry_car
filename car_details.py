@@ -22,7 +22,9 @@ WHITE = 1
 NOT_WHITE = 0
 
 MIN_SPEED = 0
-MAX_SPEED = 50
+MAX_SPEED = 100
+
+
 #
 # WHITE = 0
 # NOT_WHITE = 1
@@ -53,6 +55,7 @@ def forward():
     wiringpi.digitalWrite(motor_2, io.LOW)
     wiringpi.digitalWrite(motor_3, io.HIGH)
     wiringpi.digitalWrite(motor_4, io.LOW)
+
 
 def stop():
     print('stop')
@@ -85,8 +88,9 @@ def backward():
     wiringpi.digitalWrite(motor_3, io.LOW)
     wiringpi.digitalWrite(motor_4, io.HIGH)
 
+
 def smooth_left():
-    wiringpi.softPwmWrite(motor_1, int(MAX_SPEED/8))
+    wiringpi.softPwmWrite(motor_1, int(MAX_SPEED / 8))
     wiringpi.softPwmWrite(motor_2, MAX_SPEED)
     wiringpi.softPwmWrite(motor_3, MAX_SPEED)
     wiringpi.softPwmWrite(motor_4, MIN_SPEED)
