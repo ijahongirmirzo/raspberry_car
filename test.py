@@ -7,19 +7,11 @@ not_found_times = 0
 while True:
     trace = get_trace()
     if trace == RIGHT:
-        not_found_times = 0
         right()
-        time.sleep(0.5)
     elif trace == LEFT:
-        not_found_times = 0
         left()
-        time.sleep(0.5)
     elif trace == STRAIGHT:
-        not_found_times = 0
-        forward(2)
+        forward(1.8)
     elif trace == STOP:
-        if not_found_times <= 5:
-            backward(2)
-            not_found_times += 1
-        else:
-            stop()
+        stop()
+    time.sleep(0.3)
