@@ -7,7 +7,7 @@ not_found_times = 0
 slowness = 1
 detection_count = 0
 while True:
-    forward(2)
+    forward(5)
     # trace = get_trace()
     # if trace == RIGHT:
     #     detection_count += 1
