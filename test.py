@@ -5,23 +5,25 @@ from car_details import *
 setup()
 not_found_times = 0
 slowness = 1.2
+detection_count = 0
 stop_skip_counter = 0
-last_detected_at = None
 while True:
     trace = get_trace()
     if trace == RIGHT:
-        last_detected_at = time.time()
-        slowness = 1.5
+        detection_count += 1
         right()
     elif trace == LEFT:
-        last_detected_at = time.time()
-        slowness = 1.5
+        detection_count += 1
         left()
     elif trace == STRAIGHT:
-        if last_detected_at and time.time() - last_detected_at >= 3:
-            slowness = 1.2
+        if detection_count != 0:
+            detection_count -= 1
+        else:
+            slowness = 1.5
         forward(slowness)
     elif trace == STOP:
         forward()
         time.sleep(3)
+    if detection_count >= 2:
+        slowness = 2
     # time.sleep(0.3)
