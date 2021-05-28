@@ -19,11 +19,11 @@ while True:
         if detection_count != 0:
             detection_count -= 1
         else:
-            slowness = 1.5
+            slowness = 1.2
         forward(slowness)
     elif trace == STOP:
         forward()
         time.sleep(3)
     if detection_count >= 2:
-        slowness = 2
+        slowness = 1.5
     # time.sleep(0.3)
