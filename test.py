@@ -2,10 +2,10 @@ import time
 
 from car_details import *
 
-trace = get_trace()
 setup()
 not_found_times = 0
 while True:
+    trace = get_trace()
     if trace == RIGHT:
         not_found_times = 0
         smooth_right()
