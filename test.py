@@ -17,7 +17,7 @@ while True:
         forward(2)
     elif trace == STOP:
         if not_found_times <= 5:
-            forward(3)
+            backward(2)
             not_found_times += 1
         else:
             stop()
