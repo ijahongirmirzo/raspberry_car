@@ -4,7 +4,7 @@ from car_details import *
 
 setup()
 not_found_times = 0
-slowness = 1
+slowness = 1.5
 detection_count = 0
 while True:
     trace = get_trace()
