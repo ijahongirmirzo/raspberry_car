@@ -114,7 +114,9 @@ def get_trace():
 
 def get_obstacle():
     left_ir = int(wiringpi.digitalRead(LEFT_IR))
+    print(left_ir)
     right_ir = int(wiringpi.digitalRead(RIGHT_IR))
+    print(right_ir)
     if left_ir == NOT_OBSTACLE and right_ir == OBSTACLE:
         return LEFT
     elif left_ir == NOT_OBSTACLE and right_ir == OBSTACLE:
