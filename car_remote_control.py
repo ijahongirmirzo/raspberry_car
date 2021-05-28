@@ -10,23 +10,23 @@ PRESSED_KEYS_COUNT = 0
 def on_press(key):
     print("%s is pressed" % key)
     if key == keys.up:
-        return forward(slowness_time=3)
-        # trace = get_trace()
-        # if trace == RIGHT:
-        #     return right()
-        # elif trace == LEFT:
-        #     return left()
-        # elif trace == STOP:
-        #     return stop()
-        # elif trace == STRAIGHT:
-        #     return forward()
-        # return forward()
+        # return forward(slowness_time=3)
+        trace = get_trace()
+        if trace == RIGHT:
+            return smooth_right()
+        elif trace == LEFT:
+            return smooth_left()
+        elif trace == STOP:
+            return stop()
+        elif trace == STRAIGHT:
+            return forward(3)
+
     if key == keys.down:
         return backward()
     if key == keys.right:
         return right()
     if key == keys.left:
-        return smooth_left()
+        return left()
 
 
 def on_release(key):

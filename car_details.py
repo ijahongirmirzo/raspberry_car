@@ -30,7 +30,7 @@ def forward(slowness_time=1):
     print('forward')
     wiringpi.softPwmWrite(MOTOR_1, int(MAX_SPEED / slowness_time))
     wiringpi.softPwmWrite(MOTOR_2, MIN_SPEED)
-    wiringpi.softPwmWrite(MOTOR_3, int(MAX_SPEED))
+    wiringpi.softPwmWrite(MOTOR_3, int(MAX_SPEED / slowness_time))
     wiringpi.softPwmWrite(MOTOR_4, MIN_SPEED)
 
 
@@ -65,11 +65,20 @@ def backward(slowness_time=1):
     wiringpi.softPwmWrite(MOTOR_3, MIN_SPEED)
     wiringpi.softPwmWrite(MOTOR_4, int(MAX_SPEED / slowness_time))
 
+
 def smooth_left():
-    print('backward')
-    wiringpi.softPwmWrite(MOTOR_1, int(MAX_SPEED/8))
+    print('smooth left')
+    wiringpi.softPwmWrite(MOTOR_1, int(MAX_SPEED / 8))
     wiringpi.softPwmWrite(MOTOR_2, MIN_SPEED)
     wiringpi.softPwmWrite(MOTOR_3, MAX_SPEED)
+    wiringpi.softPwmWrite(MOTOR_4, MIN_SPEED)
+
+
+def smooth_right():
+    print('smooth right')
+    wiringpi.softPwmWrite(MOTOR_1, MAX_SPEED)
+    wiringpi.softPwmWrite(MOTOR_2, MIN_SPEED)
+    wiringpi.softPwmWrite(MOTOR_3, int(MAX_SPEED / 8))
     wiringpi.softPwmWrite(MOTOR_4, MIN_SPEED)
 
 
