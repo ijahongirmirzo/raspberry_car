@@ -17,6 +17,8 @@ while True:
     elif trace == STRAIGHT:
         if detection_count != 0:
             detection_count -= 1
+        else:
+            slowness = 1.5
         forward(slowness)
     elif trace == STOP:
         stop()
