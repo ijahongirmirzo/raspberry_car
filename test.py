@@ -6,7 +6,7 @@ setup()
 not_found_times = 0
 slowness = 1.5
 detection_count = 0
-is_skipped_stop = False
+stop_skip_counter = 0
 while True:
     trace = get_trace()
     if trace == RIGHT:
@@ -22,17 +22,8 @@ while True:
             slowness = 1.5
         forward(slowness)
     elif trace == STOP:
-        if not is_skipped_stop:
-            forward()
-            time.sleep(2)
-            new_trace = get_trace()
-            if new_trace in [STRAIGHT, LEFT, RIGHT]:
-                is_skipped_stop = True
-                continue
-            elif new_trace == STOP:
-                stop()
-        else:
-            stop()
+        forward()
+        time.sleep(3)
     if detection_count >= 2:
         slowness = 2
     # time.sleep(0.3)
