@@ -11,11 +11,11 @@ while True:
     trace = get_trace()
     if trace == RIGHT:
         last_detected_at = time.time()
-        slowness = 2
+        slowness = 1.5
         right()
     elif trace == LEFT:
         last_detected_at = time.time()
-        slowness = 2
+        slowness = 1.5
         left()
     elif trace == STRAIGHT:
         if last_detected_at and time.time() - last_detected_at >= 1.5:
