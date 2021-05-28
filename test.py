@@ -31,12 +31,14 @@ while True:
     if obstacle == STOP:
         right()
         time.sleep(1.7)
+        stop()
         while True:
             forward(2)
             trace = get_trace()
             if trace == STOP:
                 left()
                 time.sleep(1.7)
+                stop()
                 obstacle = get_obstacle()
                 if obstacle == STRAIGHT:
                     forward(2)
@@ -57,4 +59,5 @@ while True:
                     break
                 else:
                     continue
+
     # time.sleep(0.3)
