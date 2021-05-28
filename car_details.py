@@ -28,9 +28,9 @@ def setup():
 
 def forward(slowness_time=1):
     print('forward')
-    wiringpi.softPwmWrite(MOTOR_1, 20)
+    wiringpi.softPwmWrite(MOTOR_1, int(MAX_SPEED / slowness_time))
     wiringpi.softPwmWrite(MOTOR_2, MIN_SPEED)
-    wiringpi.softPwmWrite(MOTOR_3, 20)
+    wiringpi.softPwmWrite(MOTOR_3, int(MAX_SPEED / slowness_time))
     wiringpi.softPwmWrite(MOTOR_4, MIN_SPEED)
 
 
