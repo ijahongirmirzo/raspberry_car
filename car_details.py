@@ -36,10 +36,10 @@ def forward(slowness_time=1):
 
 def stop():
     print('stop')
-    wiringpi.digitalWrite(MOTOR_1, io.LOW)
-    wiringpi.digitalWrite(MOTOR_2, io.LOW)
-    wiringpi.digitalWrite(MOTOR_3, io.LOW)
-    wiringpi.digitalWrite(MOTOR_4, io.LOW)
+    wiringpi.softPwmWrite(MOTOR_1, MIN_SPEED)
+    wiringpi.softPwmWrite(MOTOR_2, MIN_SPEED)
+    wiringpi.softPwmWrite(MOTOR_3, MIN_SPEED)
+    wiringpi.softPwmWrite(MOTOR_4, MIN_SPEED)
 
 
 def right():
