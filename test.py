@@ -9,6 +9,7 @@ detection_count = 0
 stop_skip_counter = 0
 while True:
     trace = get_trace()
+    obstacle = get_obstacle()
     if trace == RIGHT:
         detection_count += 1
         right()

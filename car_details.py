@@ -111,6 +111,19 @@ def get_trace():
     elif right_tracer == NOT_BLACK and left_tracer == NOT_BLACK:
         return STOP
 
+
+def get_obstacle():
+    left_ir = int(wiringpi.digitalRead(LEFT_IR))
+    right_ir = int(wiringpi.digitalRead(RIGHT_IR))
+    if left_ir == NOT_OBSTACLE and right_ir == OBSTACLE:
+        return LEFT
+    elif left_ir == NOT_OBSTACLE and right_ir == OBSTACLE:
+        return RIGHT
+    elif left_ir == NOT_OBSTACLE and right_ir == NOT_OBSTACLE:
+        return STRAIGHT
+    elif left_ir == OBSTACLE and right_ir == OBSTACLE:
+        return STOP
+
 # if __name__ == '__main__':
 #     setup()
 #     forward()

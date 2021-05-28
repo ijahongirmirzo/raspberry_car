@@ -9,6 +9,9 @@ echo_pin = 29
 LEFT_TRACER = 10
 RIGHT_TRACER = 11
 
+RIGHT_IR = 26
+LEFT_IR = 27
+
 STOP = 0
 STRAIGHT = 1
 
@@ -17,6 +20,9 @@ LEFT = 3
 
 NOT_BLACK = 0
 BLACK = 1
+
+OBSTACLE = 0
+NOT_OBSTACLE = 1
 # WHITE = 1
 # NOT_WHITE = 0
 
@@ -35,6 +41,8 @@ OUTPUTS = [
 INPUTS = [
     echo_pin,
     LEFT_TRACER,
-    RIGHT_TRACER
+    RIGHT_TRACER,
+    RIGHT_IR,
+    LEFT_IR,
 ]
 
