@@ -123,10 +123,10 @@ def get_obstacle():
         return RIGHT
     elif left_ir == NOT_OBSTACLE and right_ir == NOT_OBSTACLE:
         print('no obstacle')
-        return STOP
+        return STRAIGHT
     elif left_ir == OBSTACLE and right_ir == OBSTACLE:
         print('obstacle found')
-        return STRAIGHT
+        return STOP
 
 # if __name__ == '__main__':
 #     setup()
