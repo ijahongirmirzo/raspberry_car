@@ -11,7 +11,7 @@ while True:
     elif trace == LEFT:
         left()
     elif trace == STRAIGHT:
-        forward(1.8)
+        forward(2.5)
     elif trace == STOP:
         stop()
-    time.sleep(0.1)
+    time.sleep(0.3)
