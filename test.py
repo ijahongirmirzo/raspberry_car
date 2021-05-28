@@ -18,7 +18,7 @@ while True:
         slowness = 1.5
         left()
     elif trace == STRAIGHT:
-        if last_detected_at and time.time() - last_detected_at >= 1.5:
+        if last_detected_at and time.time() - last_detected_at >= 3:
             slowness = 1.2
         forward(slowness)
     elif trace == STOP:
