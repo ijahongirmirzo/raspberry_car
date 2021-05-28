@@ -103,9 +103,9 @@ def get_trace():
     left_tracer = int(wiringpi.digitalRead(LEFT_TRACER))
     right_tracer = int(wiringpi.digitalRead(RIGHT_TRACER))
     if left_tracer == WHITE and right_tracer == NOT_WHITE:
-        return RIGHT
-    elif right_tracer == WHITE and left_tracer == NOT_WHITE:
         return LEFT
+    elif right_tracer == WHITE and left_tracer == NOT_WHITE:
+        return RIGHT
     elif right_tracer == WHITE and left_tracer == WHITE:
         return STRAIGHT
     elif right_tracer == NOT_WHITE and left_tracer == NOT_WHITE:
