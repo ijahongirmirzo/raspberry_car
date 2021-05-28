@@ -10,7 +10,7 @@ PRESSED_KEYS_COUNT = 0
 def on_press(key):
     print("%s is pressed" % key)
     if key == keys.up:
-        return forward(slowness_time=10)
+        return forward(slowness_time=3)
         # trace = get_trace()
         # if trace == RIGHT:
         #     return right()
