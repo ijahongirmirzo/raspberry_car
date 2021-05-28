@@ -4,7 +4,7 @@ from car_details import *
 
 setup()
 not_found_times = 0
-slowness = 1.5
+slowness = 1
 detection_count = 0
 while True:
     trace = get_trace()
@@ -18,7 +18,7 @@ while True:
         if detection_count != 0:
             detection_count -= 1
         else:
-            slowness = 1.5
+            slowness = 1
         forward(slowness)
     elif trace == STOP:
         stop()
