@@ -55,4 +55,6 @@ while True:
                                     break
                             break
                     break
+                else:
+                    continue
     # time.sleep(0.3)
