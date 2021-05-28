@@ -8,10 +8,10 @@ while True:
     trace = get_trace()
     if trace == RIGHT:
         not_found_times = 0
-        smooth_right()
+        right()
     elif trace == LEFT:
         not_found_times = 0
-        smooth_left()
+        left()
     elif trace == STRAIGHT:
         not_found_times = 0
         forward(2)
