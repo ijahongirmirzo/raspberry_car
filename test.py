@@ -9,9 +9,11 @@ while True:
     if trace == RIGHT:
         not_found_times = 0
         right()
+        time.sleep(0.5)
     elif trace == LEFT:
         not_found_times = 0
         left()
+        time.sleep(0.5)
     elif trace == STRAIGHT:
         not_found_times = 0
         forward(2)
