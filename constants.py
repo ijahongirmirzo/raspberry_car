@@ -3,7 +3,6 @@ MOTOR_2 = 4
 MOTOR_3 = 5
 MOTOR_4 = 6
 
-
 trig_pin = 28
 echo_pin = 29
 
@@ -22,4 +21,20 @@ BLACK = 1
 # NOT_WHITE = 0
 
 MIN_SPEED = 0
-MAX_SPEED = 1000
+MID_SPEED = 0
+MAX_SPEED = 50
+
+OUTPUTS = [
+    MOTOR_1,
+    MOTOR_2,
+    MOTOR_3,
+    MOTOR_4,
+    trig_pin
+]
+
+INPUTS = [
+    echo_pin,
+    LEFT_TRACER,
+    RIGHT_TRACER
+]
+
