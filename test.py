@@ -24,11 +24,11 @@ while True:
     elif trace == STOP:
         if not is_skipped_stop:
             forward()
-            time.sleep(3)
+            time.sleep(2)
             new_trace = get_trace()
-            if new_trace == STRAIGHT:
+            if new_trace in [STRAIGHT, LEFT, RIGHT]:
                 is_skipped_stop = True
-                forward(slowness)
+                continue
             elif new_trace == STOP:
                 stop()
         else:
