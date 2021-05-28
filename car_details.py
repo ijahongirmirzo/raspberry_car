@@ -116,12 +116,16 @@ def get_obstacle():
     left_ir = int(wiringpi.digitalRead(LEFT_IR))
     right_ir = int(wiringpi.digitalRead(RIGHT_IR))
     if left_ir == NOT_OBSTACLE and right_ir == OBSTACLE:
+        print('obstacle on the left')
         return LEFT
     elif left_ir == NOT_OBSTACLE and right_ir == OBSTACLE:
+        print('obstacle on the right')
         return RIGHT
     elif left_ir == NOT_OBSTACLE and right_ir == NOT_OBSTACLE:
+        print('obstacle found')
         return STRAIGHT
     elif left_ir == OBSTACLE and right_ir == OBSTACLE:
+        print('no obstacle')
         return STOP
 
 # if __name__ == '__main__':

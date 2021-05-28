@@ -28,7 +28,6 @@ while True:
         slowness = 2
 
     obstacle = get_obstacle()
-    print(obstacle)
     if obstacle == STOP:
         right()
         time.sleep(1.7)
