@@ -44,18 +44,18 @@ def stop():
 
 def right():
     print('right')
-    wiringpi.digitalWrite(MOTOR_1, io.HIGH)
-    wiringpi.digitalWrite(MOTOR_2, io.LOW)
-    wiringpi.digitalWrite(MOTOR_3, io.LOW)
-    wiringpi.digitalWrite(MOTOR_4, io.HIGH)
+    wiringpi.softPwmWrite(MOTOR_1, MAX_SPEED)
+    wiringpi.softPwmWrite(MOTOR_2, MIN_SPEED)
+    wiringpi.softPwmWrite(MOTOR_3, MIN_SPEED)
+    wiringpi.softPwmWrite(MOTOR_4, MAX_SPEED)
 
 
 def left():
     print('left')
-    wiringpi.digitalWrite(MOTOR_1, io.LOW)
-    wiringpi.digitalWrite(MOTOR_2, io.HIGH)
-    wiringpi.digitalWrite(MOTOR_3, io.HIGH)
-    wiringpi.digitalWrite(MOTOR_4, io.LOW)
+    wiringpi.softPwmWrite(MOTOR_1, MIN_SPEED)
+    wiringpi.softPwmWrite(MOTOR_2, MAX_SPEED)
+    wiringpi.softPwmWrite(MOTOR_3, MAX_SPEED)
+    wiringpi.softPwmWrite(MOTOR_4, MIN_SPEED)
 
 
 def backward(slowness_time=1):
