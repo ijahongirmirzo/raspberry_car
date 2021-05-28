@@ -26,7 +26,7 @@ def on_press(key):
     if key == keys.right:
         return right()
     if key == keys.left:
-        return left()
+        return smooth_left()
 
 
 def on_release(key):
