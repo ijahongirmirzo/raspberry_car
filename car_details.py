@@ -102,6 +102,7 @@ def get_distance():
 def get_trace():
     left_tracer = int(wiringpi.digitalRead(LEFT_TRACER))
     right_tracer = int(wiringpi.digitalRead(RIGHT_TRACER))
+    print(left_tracer)
     if left_tracer == NOT_BLACK and right_tracer == BLACK:
         return LEFT
     elif right_tracer == NOT_BLACK and left_tracer == BLACK:
