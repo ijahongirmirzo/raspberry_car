@@ -17,7 +17,7 @@ def on_press(key):
         PRESSED_KEYS_COUNT = PRESSED_KEYS_COUNT + 1
         print("release count %s" % PRESSED_KEYS_COUNT)
         if key == keys.up:
-            return slow_forward()
+            return forward(slowness_time=10)
             # trace = get_trace()
             # if trace == RIGHT:
             #     return right()

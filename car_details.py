@@ -66,16 +66,8 @@ def backward(slowness_time=1):
     wiringpi.softPwmWrite(MOTOR_4, int(MAX_SPEED / slowness_time))
 
 
-def smooth_left():
-    wiringpi.softPwmWrite(MOTOR_1, int(MAX_SPEED / 8))
-    wiringpi.softPwmWrite(MOTOR_2, MAX_SPEED)
-    wiringpi.softPwmWrite(MOTOR_3, MAX_SPEED)
-    wiringpi.softPwmWrite(MOTOR_4, MIN_SPEED)
-
-
 def get_distance():
     start_time, end_time = 0, 0
-    distance = 0.0
     wiringpi.digitalWrite(trig_pin, io.HIGH)
     time.sleep(0.00001)
     wiringpi.digitalWrite(trig_pin, io.LOW)
