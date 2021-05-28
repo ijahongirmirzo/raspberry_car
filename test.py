@@ -24,7 +24,7 @@ while True:
     elif trace == STOP:
         if not is_skipped_stop:
             forward()
-            time.sleep(2)
+            time.sleep(3)
             new_trace = get_trace()
             if new_trace == STRAIGHT:
                 is_skipped_stop = True
