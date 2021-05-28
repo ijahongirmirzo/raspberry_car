@@ -24,4 +24,4 @@ while True:
         stop()
     if detection_count >= 2:
         slowness = 5
-    # time.sleep(0.3)
+    time.sleep(0.3)
