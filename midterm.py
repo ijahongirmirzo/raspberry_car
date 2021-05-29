@@ -12,12 +12,17 @@ passed_first_obstacle = False
 passed_second_obstacle = False
 passed_ultra_obstacle = False
 is_returning = False
+waiting_for_last_border = False
+process_last_border = False
 # zebra_pass_count = 0
 while True:
     trace = car.get_trace()
     if trace == RIGHT:
         detection_count += 1
-        car.right()
+        if waiting_for_last_border:
+            process_last_border = True
+        else:
+            car.right()
     elif trace == LEFT:
         detection_count += 1
         car.left()
@@ -34,6 +39,9 @@ while True:
             # if trace == STOP:
             car.stop()
         elif passed_first_obstacle and not passed_second_obstacle:
+            process_last_border = True
+
+        if process_last_border:
             car.stop()
             car.metered_backward(2)
             car.left_angle_turn(90)
@@ -98,6 +106,7 @@ while True:
                                                 car.metered_backward(2)
                                                 car.right_angle_turn(90)
                                                 speed = 50
+                                                waiting_for_last_border = True
                                                 break
                                         break
                                     # elif trace == RIGHT:
