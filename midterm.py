@@ -82,7 +82,7 @@ while True:
                             obstacle = car.get_obstacle()
                             if obstacle in [FORWARD, LEFT, RIGHT]:
                                 while True:
-                                    car.forward(40)
+                                    car.forward(30)
                                     trace = car.get_trace()
                                     if trace in [STOP, RIGHT]:
                                         print('wrong 2')
