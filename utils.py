@@ -1,7 +1,7 @@
 # precalculated by measuring
 def angle_to_time(angle):
     if angle == 90:
-        return 0.63
+        return 0.50
     elif angle == 45:
         return 0.315
 
