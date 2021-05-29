@@ -4,5 +4,6 @@ from car import Car
 
 car = Car()
 car.setup()
-car.right_angle_turn(90)
+# car.right_angle_turn(90)
 
+car.forward(50)
