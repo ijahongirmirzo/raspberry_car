@@ -51,7 +51,6 @@ while True:
         time.sleep(3)
         obstacle = car.get_obstacle()
         if obstacle == STOP:
-            car.metered_forward(cm=2)
             if not passed_first_obstacle:
                 car.right_angle_turn(90)
                 while True:
