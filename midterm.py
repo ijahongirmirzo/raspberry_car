@@ -44,7 +44,7 @@ while True:
     obstacle = car.get_obstacle()
     if obstacle == STOP:
         car.stop()
-        time.sleep(3)
+        time.sleep(1)
         obstacle = car.get_obstacle()
         if obstacle == STOP:
             if not passed_first_obstacle or not passed_second_obstacle:
@@ -86,5 +86,8 @@ while True:
 
         else:
             continue
+
+    if (ultra_obstacle := car.get_distance()):
+        print(ultra_obstacle)
 
     # time.sleep(0.3)
