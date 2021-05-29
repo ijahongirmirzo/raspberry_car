@@ -112,12 +112,12 @@ while True:
                                                 waiting_for_last_border = True
                                                 break
                                         break
-                                    # elif trace == RIGHT:
-                                    #     car.left()
-                                    # elif trace == LEFT:
-                                    #     car.right()
-                                    # elif trace == FORWARD:
-                                    #     car.forward(50)
+                                    elif trace == RIGHT:
+                                        car.left()
+                                    elif trace == LEFT:
+                                        car.right()
+                                    elif trace == FORWARD:
+                                        car.forward(50)
 
                                 if not passed_first_obstacle:
                                     passed_first_obstacle = True
