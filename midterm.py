@@ -83,7 +83,7 @@ while True:
                     trace = car.get_trace()
                     car.smooth_left()
                     time.sleep(0.5)
-                    while car.get_trace() != RIGHT:
+                    while car.get_trace() not in [RIGHT, STOP]:
                         car.smooth_left()
                     while True:
                         car.forward(40)
