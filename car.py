@@ -54,7 +54,7 @@ class Car:
         wp.softPwmWrite(MOTOR_4, int(MAX_SPEED / (100 / speed)))
 
     def smooth_left(self):
-        wp.softPwmWrite(MOTOR_1, int(MAX_SPEED / 10))
+        wp.softPwmWrite(MOTOR_1, int(MAX_SPEED / 8))
         wp.softPwmWrite(MOTOR_2, MIN_SPEED)
         wp.softPwmWrite(MOTOR_3, int(MAX_SPEED / 4))
         wp.softPwmWrite(MOTOR_4, MIN_SPEED)
