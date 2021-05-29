@@ -77,7 +77,7 @@ while True:
                         trace = car.get_trace()
                         if trace in [STOP, RIGHT]:
                             car.metered_backward(2)
-                            car.left_angle_turn(45)
+                            car.left_angle_turn(90)
                             obstacle = car.get_obstacle()
                             if obstacle in [FORWARD, LEFT, RIGHT]:
                                 while True:
