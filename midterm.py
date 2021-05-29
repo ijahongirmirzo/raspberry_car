@@ -71,10 +71,8 @@ while True:
             obstacle = car.get_obstacle()
             if obstacle == STOP:
                 if not passed_first_obstacle or not passed_second_obstacle:
-                    car.metered_backward(4)
-                    car.right_angle_turn(45)
+                    car.right_angle_turn(90)
                     while True:
-                        car.metered_forward(10)
                         car.forward(40)
                         trace = car.get_trace()
                         if trace == STOP:
