@@ -99,7 +99,7 @@ while True:
                                                     continue
                                                 car.metered_backward(2)
                                                 car.right_angle_turn(90)
-                                                speed = 40
+                                                speed = 50
                                                 break
                                         break
                                 if not passed_first_obstacle:
