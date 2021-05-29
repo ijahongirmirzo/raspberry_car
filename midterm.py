@@ -48,6 +48,7 @@ while True:
 
     obstacle = car.get_obstacle()
     if obstacle == STOP:
+        car.stop()
         time.sleep(3)
         obstacle = car.get_obstacle()
         if obstacle == STOP:

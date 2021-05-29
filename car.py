@@ -103,7 +103,7 @@ class Car:
     def get_obstacle(self):
         left_ir = int(wp.digitalRead(LEFT_IR))
         right_ir = int(wp.digitalRead(RIGHT_IR))
-        if left_ir == NOT_OBSTACLE and right_ir == OBSTACLE:
+        if left_ir == OBSTACLE and right_ir == NOT_OBSTACLE:
             print('obstacle on the left')
             return LEFT
         elif left_ir == NOT_OBSTACLE and right_ir == OBSTACLE:
