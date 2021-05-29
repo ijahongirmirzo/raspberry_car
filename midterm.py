@@ -84,7 +84,7 @@ while True:
                                 while True:
                                     car.forward(30)
                                     trace = car.get_trace()
-                                    if trace == STOP:
+                                    if trace in [STOP]:
                                         print('wrong 2')
                                         car.metered_backward(2)
                                         car.left_angle_turn(90)
@@ -101,10 +101,10 @@ while True:
                                                 car.right_angle_turn(90)
                                                 speed = 50
                                                 break
+                                        break
                                     elif trace == RIGHT:
                                         car.left()
 
-                                    break
                                 if not passed_first_obstacle:
                                     passed_first_obstacle = True
                                 if passed_first_obstacle and not passed_second_obstacle and is_returning:
