@@ -97,6 +97,8 @@ while True:
                                     break
                             if not passed_first_obstacle:
                                 passed_first_obstacle = True
+                                print('first obstacle mission done')
+                                exit()
                             if not passed_second_obstacle:
                                 passed_second_obstacle = True
                             break
