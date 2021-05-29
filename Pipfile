@@ -8,6 +8,8 @@ pynput = "*"
 rpi = "*"
 opencv-python = "*"
 matplotlib = "*"
+scikit-learn = "*"
+moviepy = "*"
 
 [dev-packages]
 
