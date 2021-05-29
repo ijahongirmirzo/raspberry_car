@@ -33,6 +33,8 @@ while True:
             # if trace == STOP:
             car.stop()
         elif passed_first_obstacle and not passed_second_obstacle:
+            print('Kirdi')
+            exit()
             car.stop()
             car.metered_backward(2)
             car.left_angle_turn(90)
@@ -97,8 +99,6 @@ while True:
                                     break
                             if not passed_first_obstacle:
                                 passed_first_obstacle = True
-                                print('first obstacle mission done')
-                                exit()
                             if not passed_second_obstacle:
                                 passed_second_obstacle = True
                             break
