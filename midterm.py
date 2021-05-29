@@ -40,6 +40,7 @@ while True:
             temp_speed = 40
             started_at = time.time()
             while True:
+                trace = car.get_trace()
                 print(f'It is final trace: {trace}')
                 if trace == RIGHT:
                     car.right()
