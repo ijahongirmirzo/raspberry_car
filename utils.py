@@ -3,7 +3,7 @@ def angle_to_time(angle):
     if angle == 90:
         return 0.40
     elif angle == 45:
-        return 0.315
+        return 0.20
 
 
 def cm_to_time(cm):
