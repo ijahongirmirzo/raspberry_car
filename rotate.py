@@ -4,7 +4,4 @@ from car import Car
 
 car = Car()
 car.setup()
-while True:
-    obstacle = car.get_obstacle()
-    print(obstacle)
-    time.sleep(1)
+car.left_angle_turn(90)
