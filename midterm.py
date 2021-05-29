@@ -47,6 +47,7 @@ while True:
                     car.forward(temp_speed)
                 elif trace == STOP:
                     car.stop()
+                    break
             overall_time = int(time.time() - started_at)
             car.backward(temp_speed)
             time.sleep(overall_time)
