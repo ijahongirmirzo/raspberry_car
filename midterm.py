@@ -109,7 +109,7 @@ while True:
             car.stop()
             while True:
                 ultra_obstacle = car.get_distance()
-                if ultra_obstacle > 30:
+                if ultra_obstacle < 30:
                     passed_ultra_obstacle = True
                     break
 
