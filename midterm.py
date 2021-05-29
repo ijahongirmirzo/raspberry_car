@@ -103,7 +103,7 @@ while True:
                                                 speed = 50
                                                 break
                                         break
-                                    elif trace == RIGHT:
+                                    else:
                                         car.left()
 
                                 if not passed_first_obstacle:
