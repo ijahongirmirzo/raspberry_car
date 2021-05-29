@@ -8,6 +8,6 @@ def angle_to_time(angle):
 def cm_to_time(cm):
     # ensure speed is 50%
     if cm == 1:
-        return 0.3
+        return 0.2
     elif cm == 2:
-        return 0.7
+        return 0.4
