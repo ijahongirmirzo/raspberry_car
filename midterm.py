@@ -34,11 +34,24 @@ while True:
             car.stop()
         elif passed_first_obstacle and not passed_second_obstacle:
             car.stop()
-            time.sleep(1)
-            car.backward(50)
-            time.sleep(3)
+            car.metered_backward(2)
             car.left_angle_turn(90)
-            car.forward(50)
+            temp_speed = 40
+            started_at = time.time()
+            while True:
+                if trace == RIGHT:
+                    car.right()
+                elif trace == LEFT:
+                    car.left()
+                elif trace == FORWARD:
+                    car.forward(temp_speed)
+                elif trace == STOP:
+                    break
+            overall_time = int(time.time() - started_at)
+            car.backward(40)
+            time.sleep(overall_time)
+            car.left_angle_turn(90)
+            continue
     if detection_count >= 2:
         speed = 50
 
@@ -58,22 +71,23 @@ while True:
                         car.left_angle_turn(90)
                         obstacle = car.get_obstacle()
                         if obstacle == FORWARD:
-                            car.forward(50)
                             while True:
+                                car.forward(50)
                                 trace = car.get_trace()
                                 if trace == STOP:
                                     car.metered_backward(2)
                                     car.left_angle_turn(90)
-                                    car.forward(30)
                                     trace_count = 0
                                     while True:
+                                        car.forward(30)
                                         trace = car.get_trace()
                                         if trace in [STOP, LEFT, RIGHT]:
                                             if trace_count == 0:
                                                 trace_count += 1
                                                 continue
+                                            car.metered_backward(2)
                                             car.right_angle_turn(90)
-                                            car.forward(50)
+                                            speed = 40
                                             break
                                     break
                             if not passed_first_obstacle:
@@ -96,7 +110,6 @@ while True:
                 ultra_obstacle = car.get_distance()
                 if ultra_obstacle > 30:
                     passed_ultra_obstacle = True
-                    car.forward(50)
                     break
 
     # time.sleep(0.3)
