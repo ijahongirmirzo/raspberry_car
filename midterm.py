@@ -10,7 +10,7 @@ stop_skip_counter = 0
 car = Car()
 passed_first_obstacle = False
 passed_second_obstacle = False
-zebra_pass_count = 0
+# zebra_pass_count = 0
 while True:
     trace = car.get_trace()
     if trace == RIGHT:
@@ -26,16 +26,16 @@ while True:
             speed = 75
         car.forward(speed)
     elif trace == STOP:
-        if zebra_pass_count >= 2:
-            car.forward(30)
-            new_trace = car.get_trace()
-            if trace == STOP:
-                car.stop()
-        elif not passed_first_obstacle or \
+        # if zebra_pass_count >= 2:
+        #     car.forward(30)
+        #     new_trace = car.get_trace()
+        #     if trace == STOP:
+        #         car.stop()
+        if not passed_first_obstacle or \
                 (passed_first_obstacle, passed_second_obstacle):
             car.forward(30)
             time.sleep(3)
-            zebra_pass_count += 1
+            # zebra_pass_count += 1
         elif passed_first_obstacle and not passed_second_obstacle:
             car.stop()
             time.sleep(1)
