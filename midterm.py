@@ -28,7 +28,7 @@ while True:
         car.forward(speed)
     elif trace == STOP:
         print(passed_first_obstacle)
-        print(passed_first_obstacle)
+        print(passed_second_obstacle)
         car.stop()
         exit()
         if passed_first_obstacle and passed_second_obstacle:
