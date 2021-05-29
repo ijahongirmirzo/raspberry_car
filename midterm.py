@@ -107,7 +107,7 @@ while True:
                                         break
                                 if not passed_first_obstacle:
                                     passed_first_obstacle = True
-                                if passed_first_obstacle and not passed_second_obstacle:
+                                if passed_first_obstacle and not passed_second_obstacle and is_returning:
                                     passed_second_obstacle = True
                                 break
                             else:
