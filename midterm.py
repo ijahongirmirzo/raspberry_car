@@ -4,7 +4,7 @@ from car import Car
 from constants import *
 
 not_found_times = 0
-speed = 60
+speed = 70
 detection_count = 0
 stop_skip_counter = 0
 car = Car()
@@ -24,7 +24,7 @@ while True:
         if detection_count != 0:
             detection_count -= 1
         else:
-            speed = 60
+            speed = 70
         car.forward(speed)
     elif trace == STOP:
         if passed_first_obstacle and passed_second_obstacle:
@@ -36,7 +36,7 @@ while True:
             car.stop()
             car.metered_backward(2)
             car.left_angle_turn(90)
-            temp_speed = 30
+            temp_speed = 40
             started_at = time.time()
             while True:
                 if trace == RIGHT:
@@ -80,7 +80,7 @@ while True:
                                     car.left_angle_turn(90)
                                     trace_count = 0
                                     while True:
-                                        car.forward(30)
+                                        car.forward(50)
                                         trace = car.get_trace()
                                         if trace in [STOP, LEFT, RIGHT]:
                                             if trace_count == 0:
