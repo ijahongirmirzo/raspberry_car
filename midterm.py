@@ -57,7 +57,7 @@ while True:
         detection_count = 4
 
     obstacle = car.get_obstacle()
-    if obstacle in STOP:
+    if obstacle == STOP:
         car.stop()
         time.sleep(1)
         obstacle = car.get_obstacle()
