@@ -11,6 +11,7 @@ car = Car()
 passed_first_obstacle = False
 passed_second_obstacle = False
 passed_ultra_obstacle = False
+is_returning = False
 # zebra_pass_count = 0
 while True:
     trace = car.get_trace()
@@ -59,12 +60,13 @@ while True:
             car.backward(temp_speed)
             time.sleep(overall_time)
             car.left_angle_turn(90)
+            is_returning = True
             continue
     if detection_count >= 2:
         speed = 30
         detection_count = 4
 
-    if not passed_first_obstacle or not passed_second_obstacle:
+    if not passed_first_obstacle or (not passed_second_obstacle and is_returning):
         obstacle = car.get_obstacle()
         if obstacle == STOP:
             car.stop()
