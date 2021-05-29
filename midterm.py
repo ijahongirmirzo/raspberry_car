@@ -60,7 +60,7 @@ while True:
             is_returning = True
             continue
     if detection_count >= 2:
-        speed = 30
+        speed = 50
         detection_count = 4
 
     if not passed_first_obstacle or (not passed_second_obstacle and is_returning):
