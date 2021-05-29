@@ -24,49 +24,42 @@ class Car:
         wp.softPwmCreate(MOTOR_4, MIN_SPEED, MAX_SPEED)
 
     def forward(self, speed=100):
-        print('forward')
         wp.softPwmWrite(MOTOR_1, int(MAX_SPEED / (100 / speed)))
         wp.softPwmWrite(MOTOR_2, MIN_SPEED)
         wp.softPwmWrite(MOTOR_3, int(MAX_SPEED / (100 / speed)))
         wp.softPwmWrite(MOTOR_4, MIN_SPEED)
 
     def stop(self):
-        print('stop')
         wp.softPwmWrite(MOTOR_1, MIN_SPEED)
         wp.softPwmWrite(MOTOR_2, MIN_SPEED)
         wp.softPwmWrite(MOTOR_3, MIN_SPEED)
         wp.softPwmWrite(MOTOR_4, MIN_SPEED)
 
     def right(self):
-        print('right')
         wp.softPwmWrite(MOTOR_1, MAX_SPEED)
         wp.softPwmWrite(MOTOR_2, MIN_SPEED)
         wp.softPwmWrite(MOTOR_3, MIN_SPEED)
         wp.softPwmWrite(MOTOR_4, MAX_SPEED)
 
     def left(self):
-        print('left')
         wp.softPwmWrite(MOTOR_1, MIN_SPEED)
         wp.softPwmWrite(MOTOR_2, MAX_SPEED)
         wp.softPwmWrite(MOTOR_3, MAX_SPEED)
         wp.softPwmWrite(MOTOR_4, MIN_SPEED)
 
     def backward(self, speed=1):
-        print('backward')
         wp.softPwmWrite(MOTOR_1, MIN_SPEED)
         wp.softPwmWrite(MOTOR_2, int(MAX_SPEED / (100 / speed)))
         wp.softPwmWrite(MOTOR_3, MIN_SPEED)
         wp.softPwmWrite(MOTOR_4, int(MAX_SPEED / (100 / speed)))
 
     def smooth_left(self):
-        print('smooth left')
         wp.softPwmWrite(MOTOR_1, int(MAX_SPEED / 8))
         wp.softPwmWrite(MOTOR_2, MIN_SPEED)
         wp.softPwmWrite(MOTOR_3, MAX_SPEED)
         wp.softPwmWrite(MOTOR_4, MIN_SPEED)
 
     def smooth_right(self):
-        print('smooth right')
         wp.softPwmWrite(MOTOR_1, MAX_SPEED)
         wp.softPwmWrite(MOTOR_2, MIN_SPEED)
         wp.softPwmWrite(MOTOR_3, int(MAX_SPEED / 8))
@@ -85,7 +78,6 @@ class Car:
             end_time = time.time()
 
         distance = (end_time - start_time) * 34300 / 2
-        print(f'Distance: {distance}')
         return round(distance)
 
     def get_trace(self):
@@ -104,16 +96,12 @@ class Car:
         left_ir = int(wp.digitalRead(LEFT_IR))
         right_ir = int(wp.digitalRead(RIGHT_IR))
         if left_ir == OBSTACLE and right_ir == NOT_OBSTACLE:
-            print('obstacle on the left')
             return LEFT
         elif left_ir == NOT_OBSTACLE and right_ir == OBSTACLE:
-            print('obstacle on the right')
             return RIGHT
         elif left_ir == NOT_OBSTACLE and right_ir == NOT_OBSTACLE:
-            print('no obstacle')
             return FORWARD
         elif left_ir == OBSTACLE and right_ir == OBSTACLE:
-            print('obstacle found')
             return STOP
 
     def right_angle_turn(self, angle):
