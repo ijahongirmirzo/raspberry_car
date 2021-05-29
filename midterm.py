@@ -87,7 +87,7 @@ while True:
         else:
             continue
 
-    if ultra_obstacle := car.get_distance():
-        print(ultra_obstacle)
+    ultra_obstacle = car.get_distance()
+    print(ultra_obstacle)
 
     # time.sleep(0.3)
