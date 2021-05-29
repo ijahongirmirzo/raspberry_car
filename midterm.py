@@ -128,14 +128,14 @@ while True:
             else:
                 continue
 
-    if not passed_ultra_obstacle:
-        ultra_obstacle = car.get_distance()
-        if ultra_obstacle <= 20:
-            car.stop()
-            while True:
-                ultra_obstacle = car.get_distance()
-                if ultra_obstacle > 20:
-                    passed_ultra_obstacle = True
-                    break
+    # if not passed_ultra_obstacle:
+    #     ultra_obstacle = car.get_distance()
+    #     if ultra_obstacle <= 20:
+    #         car.stop()
+    #         while True:
+    #             ultra_obstacle = car.get_distance()
+    #             if ultra_obstacle > 20:
+    #                 passed_ultra_obstacle = True
+    #                 break
 
     # time.sleep(0.3)
