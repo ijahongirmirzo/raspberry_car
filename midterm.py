@@ -52,7 +52,7 @@ while True:
                     break
             overall_time = int(time.time() - started_at)
             print(f'Time elapsed: {overall_time}')
-            exit()
+            # exit()
             car.backward(temp_speed)
             time.sleep(overall_time)
             car.left_angle_turn(90)
