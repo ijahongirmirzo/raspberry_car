@@ -27,6 +27,7 @@ while True:
             speed = 70
         car.forward(speed)
     elif trace == STOP:
+        print('kirdi')
         if passed_first_obstacle and passed_second_obstacle:
             # car.forward(30)
             # new_trace = car.get_trace()
