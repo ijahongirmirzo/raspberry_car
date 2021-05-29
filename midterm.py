@@ -19,7 +19,7 @@ while True:
     elif trace == LEFT:
         detection_count += 1
         car.left()
-    elif trace == STRAIGHT:
+    elif trace == FORWARD:
         if detection_count != 0:
             detection_count -= 1
         else:
@@ -61,7 +61,7 @@ while True:
                         car.metered_backward(2)
                         car.left_angle_turn(90)
                         obstacle = car.get_obstacle()
-                        if obstacle == STRAIGHT:
+                        if obstacle == FORWARD:
                             car.forward(50)
                             while True:
                                 trace = car.get_trace()

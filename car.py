@@ -92,13 +92,13 @@ class Car:
         left_tracer = int(wp.digitalRead(LEFT_TRACER))
         right_tracer = int(wp.digitalRead(RIGHT_TRACER))
         if left_tracer == NOT_BLACK and right_tracer == BLACK:
-            return LEFT
-        elif right_tracer == NOT_BLACK and left_tracer == BLACK:
             return RIGHT
+        elif right_tracer == NOT_BLACK and left_tracer == BLACK:
+            return LEFT
         elif right_tracer == BLACK and left_tracer == BLACK:
-            return STOP
+            return FORWARD
         elif right_tracer == NOT_BLACK and left_tracer == NOT_BLACK:
-            return STRAIGHT
+            return STOP
 
     def get_obstacle(self):
         left_ir = int(wp.digitalRead(LEFT_IR))
@@ -111,7 +111,7 @@ class Car:
             return RIGHT
         elif left_ir == NOT_OBSTACLE and right_ir == NOT_OBSTACLE:
             print('no obstacle')
-            return STRAIGHT
+            return FORWARD
         elif left_ir == OBSTACLE and right_ir == OBSTACLE:
             print('obstacle found')
             return STOP

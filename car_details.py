@@ -107,7 +107,7 @@ def get_trace():
     elif right_tracer == NOT_BLACK and left_tracer == BLACK:
         return LEFT
     elif right_tracer == BLACK and left_tracer == BLACK:
-        return STRAIGHT
+        return FORWARD
     elif right_tracer == NOT_BLACK and left_tracer == NOT_BLACK:
         return STOP
 
@@ -123,7 +123,7 @@ def get_obstacle():
         return RIGHT
     elif left_ir == NOT_OBSTACLE and right_ir == NOT_OBSTACLE:
         print('no obstacle')
-        return STRAIGHT
+        return FORWARD
     elif left_ir == OBSTACLE and right_ir == OBSTACLE:
         print('obstacle found')
         return STOP

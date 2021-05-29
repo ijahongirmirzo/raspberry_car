@@ -1,7 +1,7 @@
 from pynput import keyboard
 from car_details import *
 
-from constants import STOP, STRAIGHT, RIGHT, LEFT
+from constants import STOP, FORWARD, RIGHT, LEFT
 
 keys = keyboard.Key
 PRESSED_KEYS_COUNT = 0
@@ -18,7 +18,7 @@ def on_press(key):
             return smooth_left()
         elif trace == STOP:
             return stop()
-        elif trace == STRAIGHT:
+        elif trace == FORWARD:
             return forward(3)
 
     if key == keys.down:
