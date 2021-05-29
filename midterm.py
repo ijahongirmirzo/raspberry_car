@@ -76,7 +76,6 @@ while True:
                         car.forward(40)
                         trace = car.get_trace()
                         if trace == STOP:
-                            print('wrong 1')
                             car.metered_backward(2)
                             car.left_angle_turn(45)
                             obstacle = car.get_obstacle()
@@ -85,7 +84,6 @@ while True:
                                     trace = car.get_trace()
                                     print(f'current trace: {trace}')
                                     if trace == STOP:
-                                        print('wrong 2')
                                         car.metered_backward(2)
                                         car.left_angle_turn(90)
                                         trace_count = 0
@@ -93,7 +91,6 @@ while True:
                                             car.forward(40)
                                             trace = car.get_trace()
                                             if trace in [STOP, LEFT, RIGHT]:
-                                                print('wrong 3')
                                                 if trace_count == 0:
                                                     trace_count += 1
                                                     continue
