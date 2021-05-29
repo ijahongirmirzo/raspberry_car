@@ -65,7 +65,7 @@ while True:
 
     if not passed_first_obstacle or (not passed_second_obstacle and is_returning):
         obstacle = car.get_obstacle()
-        if obstacle == STOP:
+        if obstacle in [STOP, RIGHT, LEFT]:
             car.stop()
             time.sleep(1)
             obstacle = car.get_obstacle()
