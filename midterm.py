@@ -75,7 +75,7 @@ while True:
         obstacle = car.get_obstacle()
         if obstacle in [STOP, RIGHT, LEFT]:
             car.stop()
-            # time.sleep(0.5)
+            time.sleep(0.2)
             obstacle = car.get_obstacle()
             if obstacle in [STOP, RIGHT, LEFT]:
                 if not passed_first_obstacle or not passed_second_obstacle:
