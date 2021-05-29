@@ -82,7 +82,6 @@ while True:
                             obstacle = car.get_obstacle()
                             if obstacle in [FORWARD, LEFT, RIGHT]:
                                 while True:
-                                    car.forward(30)
                                     trace = car.get_trace()
                                     print(f'current trace: {trace}')
                                     if trace == STOP:
@@ -105,6 +104,10 @@ while True:
                                         break
                                     elif trace == RIGHT:
                                         car.left()
+                                    elif trace == LEFT:
+                                        car.right()
+                                    elif trace == FORWARD:
+                                        car.forward(50)
 
                                 if not passed_first_obstacle:
                                     passed_first_obstacle = True
