@@ -12,3 +12,5 @@ def cm_to_time(cm):
         return 0.8
     elif cm == 2:
         return 0.16
+    elif cm == 4:
+        return 0.32
