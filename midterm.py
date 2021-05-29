@@ -69,7 +69,7 @@ while True:
             car.stop()
             time.sleep(1)
             obstacle = car.get_obstacle()
-            if obstacle == STOP:
+            if obstacle in [STOP, RIGHT, LEFT]:
                 if not passed_first_obstacle or not passed_second_obstacle:
                     car.right_angle_turn(90)
                     while True:
