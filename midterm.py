@@ -18,120 +18,15 @@ process_last_border = False
 while True:
     trace = car.get_trace()
     if trace == RIGHT:
-        detection_count += 1
-        if waiting_for_last_border:
-            process_last_border = True
-        else:
-            car.right()
+        car.right()
     elif trace == LEFT:
-        detection_count += 1
         car.left()
     elif trace == FORWARD:
-        if detection_count != 0:
-            detection_count -= 1
-        else:
-            speed = 70
         car.forward(speed)
     elif trace == STOP:
-        if passed_first_obstacle and passed_second_obstacle:
-            # car.forward(30)
-            # new_trace = car.get_trace()
-            # if trace == STOP:
-            car.stop()
-        elif passed_first_obstacle and not passed_second_obstacle:
-            process_last_border = True
+        pass
 
-        if process_last_border:
-            car.stop()
-            car.metered_backward(2)
-            car.left_angle_turn(90)
-            temp_speed = 40
-            started_at = time.time()
-            while True:
-                trace = car.get_trace()
-                print(f'It is final trace: {trace}')
-                if trace == RIGHT:
-                    car.right()
-                elif trace == LEFT:
-                    car.left()
-                elif trace == FORWARD:
-                    car.forward(temp_speed)
-                elif trace == STOP:
-                    car.stop()
-                    break
-            overall_time = int(time.time() - started_at)
-            print(f'Time elapsed: {overall_time}')
-            # exit()
-            car.backward(temp_speed)
-            time.sleep(overall_time)
-            car.left_angle_turn(90)
-            is_returning = True
-            continue
-    if detection_count >= 2:
-        speed = 50
-        detection_count = 4
-
-    if not passed_first_obstacle or (not passed_second_obstacle and is_returning):
-        obstacle = car.get_obstacle()
-        if obstacle in [STOP, RIGHT, LEFT]:
-            car.stop()
-            time.sleep(0.2)
-            obstacle = car.get_obstacle()
-            if obstacle in [STOP, RIGHT, LEFT]:
-                if not passed_first_obstacle or not passed_second_obstacle:
-                    car.right_angle_turn(90)
-                    trace = car.get_trace()
-                    car.smooth_left()
-                    time.sleep(0.5)
-                    # while car.get_trace() not in [RIGHT, STOP]:
-                    #     car.smooth_left()
-                    while True:
-                        car.forward(40)
-                        trace = car.get_trace()
-                        if trace in [STOP, RIGHT]:
-                            car.metered_backward(2)
-                            car.left_angle_turn(90)
-                            obstacle = car.get_obstacle()
-                            if obstacle in [FORWARD, LEFT, RIGHT]:
-                                while True:
-                                    car.forward(50)
-                                    trace = car.get_trace()
-                                    print(f'current trace: {trace}')
-                                    if trace == STOP:
-                                        car.metered_backward(2)
-                                        car.left_angle_turn(90)
-                                        trace_count = 0
-                                        while True:
-                                            car.forward(40)
-                                            trace = car.get_trace()
-                                            if trace in [STOP, LEFT, RIGHT]:
-                                                if trace_count == 0:
-                                                    trace_count += 1
-                                                    continue
-                                                car.metered_backward(2)
-                                                car.right_angle_turn(90)
-                                                speed = 50
-                                                waiting_for_last_border = True
-                                                break
-                                        break
-                                    elif trace == RIGHT:
-                                        car.left()
-                                    elif trace == LEFT:
-                                        car.right()
-                                    elif trace == FORWARD:
-                                        car.forward(50)
-
-                                if not passed_first_obstacle:
-                                    passed_first_obstacle = True
-                                if passed_first_obstacle and not passed_second_obstacle and is_returning:
-                                    passed_second_obstacle = True
-                                break
-                            else:
-                                car.right_angle_turn(90)
-                                continue
-
-            else:
-                continue
+    obstacle = car.get_obstacle()
 
     # if not passed_ultra_obstacle:
     #     ultra_obstacle = car.get_distance()

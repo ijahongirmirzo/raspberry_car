@@ -1,78 +1,115 @@
-import cv2
 import numpy as np
-from matplotlib import pyplot as plt
+import cv2
+import lane_utils
+from PIL import Image, ImageDraw, ImageFont
 
+####################################################
 
-def roi(image, vertices):
-    mask = np.zeros_like(image)
-    mask_color = 255
-    cv2.fillPoly(mask, vertices, mask_color)
-    cropped_img = cv2.bitwise_and(image, mask)
-    return cropped_img
+useCamera = False
+cameraNum = 0
 
+videoPath = 'lane_detection.mp4'
 
-def draw_lines(image, hough_lines):
-    if hough_lines is not None:
-        for line in hough_lines:
-            x1, y1, x2, y2 = line[0]
-            cv2.line(image, (x1, y1), (x2, y2), (0, 255, 0), 2)
+frameWidth = 800
+frameHeight = 500
 
-    return image
+if useCamera:
+    intialTracbarVals = [24, 55, 12, 100]  # wT,hT,wB,hB
+else:
+    intialTracbarVals = [42, 63, 14, 87]  # wT,hT,wB,hB
 
+###################################################ก#
+if useCamera:
+    cap = cv2.VideoCapture(cameraNum)
+    cap.set(3, frameWidth)
+    cap.set(4, frameHeight)
+else:
+    cap = cv2.VideoCapture(videoPath)
+count = 0
+noOfArrayValues = 10
+global arrayCurve, arrayCounter, directionText
+averageCurve = 0
+arrayCounter = 0
+directionText = ''
+arrayCurve = np.zeros([noOfArrayValues])
+myVals = []
+lane_utils.initializeTrackbars(intialTracbarVals)
 
-# img = cv2.imread("saved_frame.jpg")
-# img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+while True:
 
+    success, img = cap.read()
+    if useCamera == False: img = cv2.resize(img, (frameWidth, frameHeight), None)
+    imgWarpPoints = img.copy()
+    imgFinal = img.copy()
+    imgCanny = img.copy()
 
-def process(img):
-    height = img.shape[0]
-    width = img.shape[1]
-    roi_vertices = [
-        (0, 650),
-        (2*width/3, 2*height/3),
-        (width, 1000)
-    ]
+    imgUndis = lane_utils.undistort(img)
+    imgThres, imgCanny, imgColor = lane_utils.thresholding(imgUndis)
+    src = lane_utils.valTrackbars()
+    imgWarp = lane_utils.perspective_warp(imgThres, dst_size=(frameWidth, frameHeight), src=src)
+    imgWarpPoints = lane_utils.drawPoints(imgWarpPoints, src)
+    imgSliding, curves, lanes, ploty = lane_utils.sliding_window(imgWarp, draw_windows=True)
 
-    gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    gray_img = cv2.dilate(gray_img, kernel=np.ones((3, 3), np.uint8))
+    try:
+        curverad = lane_utils.get_curve(imgFinal, curves[0], curves[1])
+        lane_curve = np.mean([curverad[0], curverad[1]])
+        imgFinal = lane_utils.draw_lanes(img, curves[0], curves[1], frameWidth, frameHeight, src=src)
 
-    canny = cv2.Canny(gray_img, 130, 220)
+        currentCurve = lane_curve // 50
+        if int(np.sum(arrayCurve)) == 0:
+            averageCurve = currentCurve
+        else:
+            averageCurve = np.sum(arrayCurve) // arrayCurve.shape[0]
+        if abs(averageCurve - currentCurve) > 200:
+            arrayCurve[arrayCounter] = averageCurve
+        else:
+            arrayCurve[arrayCounter] = currentCurve
+        arrayCounter += 1
+        if arrayCounter >= noOfArrayValues: arrayCounter = 0
 
-    roi_img = roi(canny, np.array([roi_vertices], np.int32))
+        cv2.putText(imgFinal, str(int(averageCurve)), (20, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2,
+                    cv2.LINE_AA)
 
-    lines = cv2.HoughLinesP(roi_img, 1, np.pi / 180, threshold=10, minLineLength=15, maxLineGap=2)
+        directionText = 'No lane'
+        if averageCurve > 10:
+            directionText = 'Turn right'
 
-    final_img = draw_lines(img, lines)
+        elif averageCurve < -10:
+            directionText = 'Turn left'
 
-    return final_img
+        elif averageCurve < 10 and averageCurve > -10:
+            directionText = 'ตรง'
 
+        elif averageCurve == -1000000:
+            directionText = 'Lane not found'
 
-cap = cv2.VideoCapture("lane_detection.mp4")
+    except:
+        lane_curve = 00
+        pass
 
-frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-fourcc = cv2.VideoWriter_fourcc(*"XVID")
-saved_frame = cv2.VideoWriter("lane_detection.avi", fourcc, 30.0, (frame_width, frame_height))
+    # แสดงข้อความ ภาษาไทย
+    # font = ImageFont.truetype('TP_Kubua.ttf', 45)
+    img_pil = Image.fromarray(imgFinal)
+    draw = ImageDraw.Draw(img_pil)
+    draw.text((20, 30), directionText, fill=(0, 255, 255))
+    imgFinal = np.array(img_pil)
 
-while cap.isOpened():
-    ret, frame = cap.read()
+    # แสดง Lane Curve Lines
+    # imgFinal = lane_utils.drawLines(imgFinal,lane_curve)
 
-    # try:
-    frame = process(frame)
+    imgThres = cv2.cvtColor(imgThres, cv2.COLOR_GRAY2BGR)
+    imgBlank = np.zeros_like(img)
+    imgStacked = lane_utils.stackImages(0.7, ([img, imgUndis, imgWarpPoints],
+                                              [imgColor, imgCanny, imgThres],
+                                              [imgWarp, imgSliding, imgFinal]
+                                              ))
 
-    saved_frame.write(frame)
-    cv2.imshow("frame", frame)
+    # แสดงขั้นตอน
+    # cv2.imshow("PipeLine",imgStacked)
 
-    if cv2.waitKey(1) & 0xFF == 27:
+    cv2.imshow("Result", imgFinal)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-    # except Exception:
-    #     break
-
 cap.release()
-saved_frame.release()
 cv2.destroyAllWindows()
-
-# result = process(img)
-# plt.imshow(result)
-# plt.show()
