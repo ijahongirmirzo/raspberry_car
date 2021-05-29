@@ -10,6 +10,7 @@ stop_skip_counter = 0
 car = Car()
 passed_first_obstacle = False
 passed_second_obstacle = False
+passed_ultra_obstacle = False
 # zebra_pass_count = 0
 while True:
     trace = car.get_trace()
@@ -87,7 +88,15 @@ while True:
         else:
             continue
 
-    ultra_obstacle = car.get_distance()
-    print(ultra_obstacle)
+    if not passed_ultra_obstacle:
+        ultra_obstacle = car.get_distance()
+        if ultra_obstacle <= 30:
+            car.stop()
+            while True:
+                ultra_obstacle = car.get_distance()
+                if ultra_obstacle > 30:
+                    passed_ultra_obstacle = True
+                    car.forward(50)
+                    break
 
     # time.sleep(0.3)
