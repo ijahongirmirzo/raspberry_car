@@ -74,7 +74,7 @@ while True:
                             while True:
                                 car.forward(50)
                                 trace = car.get_trace()
-                                if trace == STOP:
+                                if trace in [STOP, LEFT]:
                                     car.metered_backward(2)
                                     car.left_angle_turn(90)
                                     trace_count = 0
