@@ -6,4 +6,4 @@ car = Car()
 car.setup()
 # car.right_angle_turn(90)
 
-car.forward(50)
+car.smooth_left()
