@@ -1,6 +1,6 @@
 def angle_to_time(angle):
     if angle == 90:
-        return 0.6
+        return 0.65
     elif angle == 45:
         return 0.3
 
