@@ -29,7 +29,7 @@ while True:
     elif trace == STOP:
         print(passed_first_obstacle)
         print(passed_second_obstacle)
-        exit()
+        raise Exception()
         if passed_first_obstacle and passed_second_obstacle:
             # car.forward(30)
             # new_trace = car.get_trace()
