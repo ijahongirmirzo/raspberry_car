@@ -4,5 +4,6 @@ from car import Car
 
 car = Car()
 car.setup()
-car.backward(50)
+while True:
+    car.backward(50)
 
