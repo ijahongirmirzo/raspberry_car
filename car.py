@@ -23,7 +23,7 @@ class Car:
         wp.softPwmCreate(MOTOR_3, MIN_SPEED, MAX_SPEED)
         wp.softPwmCreate(MOTOR_4, MIN_SPEED, MAX_SPEED)
 
-    def forward(self, speed=1):
+    def forward(self, speed=100):
         print('forward')
         wp.softPwmWrite(MOTOR_1, int(MAX_SPEED / (100 / speed)))
         wp.softPwmWrite(MOTOR_2, MIN_SPEED)
