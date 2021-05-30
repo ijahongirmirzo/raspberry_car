@@ -107,6 +107,7 @@ while True:
         ultra_obstacle = car.get_distance()
         if ultra_obstacle <= 20:
             car.stop()
+            time.sleep(1)
             while True:
                 ultra_obstacle = car.get_distance()
                 if ultra_obstacle > 20:
