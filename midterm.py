@@ -43,15 +43,13 @@ while True:
         while True:
             car.forward(10)
             trace = car.get_trace()
-            print(trace)
             obstacle = car.get_obstacle()
             if obstacle == RIGHT or trace == RIGHT:
                 car.right()
             elif trace == LEFT:
-                print('left')
                 car.left()
             elif trace == FORWARD:
-                car.forward(20)
+                car.forward(10)
             elif trace == STOP:
                 break
         car.stop()
