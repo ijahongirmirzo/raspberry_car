@@ -2,10 +2,10 @@ import numpy as np
 import cv2
 import pickle
 
-def nothing(x):
+def just_skip_it(x):
     pass
 
-def undistort(img, cal_dir='cal_pickle.p'):
+def undistort(img, cal_dir='pickle_file_of_lane.p'):
     with open(cal_dir, mode='rb') as f:
         file = pickle.load(f)
     mtx = file['mtx']
@@ -13,40 +13,41 @@ def undistort(img, cal_dir='cal_pickle.p'):
     dst = cv2.undistort(img, mtx, dist, None, mtx)
     return dst
 
-def colorFilter(img):
-    hsv = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
-    lowerYellow = np.array([18,94,140])
-    upperYellow = np.array([48,255,255])
+
+def colorFiltering(img):
+    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    lowerYellow = np.array([18, 94, 140])
+    upperYellow = np.array([48, 255, 255])
     lowerWhite = np.array([0, 0, 200])
     upperWhite = np.array([0, 255, 255])
-    maskedWhite= cv2.inRange(hsv,lowerWhite,upperWhite)
+    maskedWhite = cv2.inRange(hsv, lowerWhite, upperWhite)
     maskedYellow = cv2.inRange(hsv, lowerYellow, upperYellow)
-    combinedImage = cv2.bitwise_or(maskedWhite,maskedYellow)
+    combinedImage = cv2.bitwise_or(maskedWhite, maskedYellow)
     return combinedImage
 
 
 def thresholding(img):
     imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    kernel = np.ones((5,5))
+    kernel = np.ones((5, 5))
     imgBlur = cv2.GaussianBlur(imgGray, (5, 5), 0)
     imgCanny = cv2.Canny(imgBlur, 50, 100)
-    #imgClose = cv2.morphologyEx(imgCanny, cv2.MORPH_CLOSE, np.ones((10,10)))
-    imgDial = cv2.dilate(imgCanny,kernel,iterations=1)
-    imgErode = cv2.erode(imgDial,kernel,iterations=1)
+    # imgClose = cv2.morphologyEx(imgCanny, cv2.MORPH_CLOSE, np.ones((10,10)))
+    imgDial = cv2.dilate(imgCanny, kernel, iterations=1)
+    imgErode = cv2.erode(imgDial, kernel, iterations=1)
 
-    imgColor = colorFilter(img)
+    imgColor = colorFiltering(img)
     combinedImage = cv2.bitwise_or(imgColor, imgErode)
 
-    return combinedImage,imgCanny,imgColor
+    return combinedImage, imgCanny, imgColor
 
-def initializeTrackbars(intialTracbarVals):
+
+def initializeTracks(intialTracbarVals):
     cv2.namedWindow("Trackbars")
     cv2.resizeWindow("Trackbars", 360, 240)
-    cv2.createTrackbar("Width Top", "Trackbars", intialTracbarVals[0],50, nothing)
-    cv2.createTrackbar("Height Top", "Trackbars", intialTracbarVals[1], 100, nothing)
-    cv2.createTrackbar("Width Bottom", "Trackbars", intialTracbarVals[2], 50, nothing)
-    cv2.createTrackbar("Height Bottom", "Trackbars", intialTracbarVals[3], 100, nothing)
-
+    cv2.createTrackbar("Width Top", "Trackbars", intialTracbarVals[0], 50, just_skip_it)
+    cv2.createTrackbar("Height Top", "Trackbars", intialTracbarVals[1], 100, just_skip_it)
+    cv2.createTrackbar("Width Bottom", "Trackbars", intialTracbarVals[2], 50, just_skip_it)
+    cv2.createTrackbar("Height Bottom", "Trackbars", intialTracbarVals[3], 100, just_skip_it)
 
 
 def valTrackbars():
@@ -55,18 +56,20 @@ def valTrackbars():
     widthBottom = cv2.getTrackbarPos("Width Bottom", "Trackbars")
     heightBottom = cv2.getTrackbarPos("Height Bottom", "Trackbars")
 
-    src = np.float32([(widthTop/100,heightTop/100), (1-(widthTop/100), heightTop/100),
-                      (widthBottom/100, heightBottom/100), (1-(widthBottom/100), heightBottom/100)])
-    #src = np.float32([(0.43, 0.65), (0.58, 0.65), (0.1, 1), (1, 1)])
+    src = np.float32([(widthTop / 100, heightTop / 100), (1 - (widthTop / 100), heightTop / 100),
+                      (widthBottom / 100, heightBottom / 100), (1 - (widthBottom / 100), heightBottom / 100)])
+    # src = np.float32([(0.43, 0.65), (0.58, 0.65), (0.1, 1), (1, 1)])
     return src
 
-def drawPoints(img,src):
-    img_size = np.float32([(img.shape[1],img.shape[0])])
-    #src = np.float32([(0.43, 0.65), (0.58, 0.65), (0.1, 1), (1, 1)])
+
+def drawPoints(img, src):
+    img_size = np.float32([(img.shape[1], img.shape[0])])
+    # src = np.float32([(0.43, 0.65), (0.58, 0.65), (0.1, 1), (1, 1)])
     src = src * img_size
-    for x in range( 0,4):
-        cv2.circle(img,(int(src[x][0]),int(src[x][1])),15,(0,0,255),cv2.FILLED)
+    for x in range(0, 4):
+        cv2.circle(img, (int(src[x][0]), int(src[x][1])), 15, (0, 0, 255), cv2.FILLED)
     return img
+
 
 def pipeline(img, s_thresh=(100, 255), sx_thresh=(15, 255)):
     img = undistort(img)
@@ -98,10 +101,10 @@ def pipeline(img, s_thresh=(100, 255), sx_thresh=(15, 255)):
 
 def perspective_warp(img,
                      dst_size=(800, 600),
-                     src=np.float32([(0.43,0.65),(0.58,0.65),(0.1,1),(1,1)]),
-                     dst=np.float32([(0,0), (1, 0), (0,1), (1,1)])):
-    img_size = np.float32([(img.shape[1],img.shape[0])])
-    src = src* img_size
+                     src=np.float32([(0.43, 0.65), (0.58, 0.65), (0.1, 1), (1, 1)]),
+                     dst=np.float32([(0, 0), (1, 0), (0, 1), (1, 1)])):
+    img_size = np.float32([(img.shape[1], img.shape[0])])
+    src = src * img_size
     # For destination points, I'm arbitrarily choosing some points to be
     # a nice fit for displaying our warped result
     # again, not exact, but close enough for our purposes
@@ -112,13 +115,14 @@ def perspective_warp(img,
     warped = cv2.warpPerspective(img, M, dst_size)
 
     return warped
+
 
 def inv_perspective_warp(img,
-                     dst_size=(800, 600),
-                     src=np.float32([(0,0), (1, 0), (0,1), (1,1)]),
-                     dst=np.float32([(0.43,0.65),(0.58,0.65),(0.1,1),(1,1)])):
-    img_size = np.float32([(img.shape[1],img.shape[0])])
-    src = src* img_size
+                         dst_size=(800, 600),
+                         src=np.float32([(0, 0), (1, 0), (0, 1), (1, 1)]),
+                         dst=np.float32([(0.43, 0.65), (0.58, 0.65), (0.1, 1), (1, 1)])):
+    img_size = np.float32([(img.shape[1], img.shape[0])])
+    src = src * img_size
     # For destination points, I'm arbitrarily choosing some points to be
     # a nice fit for displaying our warped result
     # again, not exact, but close enough for our purposes
@@ -129,10 +133,10 @@ def inv_perspective_warp(img,
     warped = cv2.warpPerspective(img, M, dst_size)
     return warped
 
-def get_hist(img):
-    hist = np.sum(img[img.shape[0]//2:,:], axis=0)
-    return hist
 
+def get_hist(img):
+    hist = np.sum(img[img.shape[0] // 2:, :], axis=0)
+    return hist
 
 
 left_a, left_b, left_c = [], [], []
@@ -245,9 +249,7 @@ def sliding_window(img, nwindows=15, margin=50, minpix=1, draw_windows=True):
 
         return out_img, (left_fitx, right_fitx), (left_fit_, right_fit_), ploty
     else:
-        return img,(0,0),(0,0),0
-
-
+        return img, (0, 0), (0, 0), 0
 
 
 def get_curve(img, leftx, rightx):
@@ -275,7 +277,7 @@ def get_curve(img, leftx, rightx):
     return (l_fit_x_int, r_fit_x_int, center)
 
 
-def draw_lanes(img, left_fit, right_fit,frameWidth,frameHeight,src):
+def draw_lanes(img, left_fit, right_fit, frameWidth, frameHeight, src):
     ploty = np.linspace(0, img.shape[0] - 1, img.shape[0])
     color_img = np.zeros_like(img)
 
@@ -283,11 +285,10 @@ def draw_lanes(img, left_fit, right_fit,frameWidth,frameHeight,src):
     right = np.array([np.flipud(np.transpose(np.vstack([right_fit, ploty])))])
     points = np.hstack((left, right))
 
-    cv2.fillPoly(color_img, np.int_(points), (0, 150, 0))
-    inv_perspective = inv_perspective_warp(color_img, (frameWidth,frameHeight), dst=src)
+    cv2.fillPoly(color_img, np.int_(points), (0, 255, 247))
+    inv_perspective = inv_perspective_warp(color_img, (frameWidth, frameHeight), dst=src)
     inv_perspective = cv2.addWeighted(img, 0.5, inv_perspective, 0.7, 0)
     return inv_perspective
-
 
 
 # def textDisplay(curve,img):
@@ -305,25 +306,24 @@ def draw_lanes(img, left_fit, right_fit,frameWidth,frameHeight,src):
 #     cv2.putText(img, directionText, ((img.shape[1]//2)-35,(img.shape[0])-20 ), font, 1, (0, 200, 200), 2, cv2.LINE_AA)
 
 
-
-
-def stackImages(scale,imgArray):
+def stackImages(scale, imgArray):
     rows = len(imgArray)
     cols = len(imgArray[0])
     rowsAvailable = isinstance(imgArray[0], list)
     width = imgArray[0][0].shape[1]
     height = imgArray[0][0].shape[0]
     if rowsAvailable:
-        for x in range ( 0, rows):
+        for x in range(0, rows):
             for y in range(0, cols):
-                if imgArray[x][y].shape[:2] == imgArray[0][0].shape [:2]:
+                if imgArray[x][y].shape[:2] == imgArray[0][0].shape[:2]:
                     imgArray[x][y] = cv2.resize(imgArray[x][y], (0, 0), None, scale, scale)
                 else:
-                    imgArray[x][y] = cv2.resize(imgArray[x][y], (imgArray[0][0].shape[1], imgArray[0][0].shape[0]), None, scale, scale)
-                if len(imgArray[x][y].shape) == 2: imgArray[x][y]= cv2.cvtColor( imgArray[x][y], cv2.COLOR_GRAY2BGR)
+                    imgArray[x][y] = cv2.resize(imgArray[x][y], (imgArray[0][0].shape[1], imgArray[0][0].shape[0]),
+                                                None, scale, scale)
+                if len(imgArray[x][y].shape) == 2: imgArray[x][y] = cv2.cvtColor(imgArray[x][y], cv2.COLOR_GRAY2BGR)
         imageBlank = np.zeros((height, width, 3), np.uint8)
-        hor = [imageBlank]*rows
-        hor_con = [imageBlank]*rows
+        hor = [imageBlank] * rows
+        hor_con = [imageBlank] * rows
         for x in range(0, rows):
             hor[x] = np.hstack(imgArray[x])
         ver = np.vstack(hor)
@@ -332,16 +332,17 @@ def stackImages(scale,imgArray):
             if imgArray[x].shape[:2] == imgArray[0].shape[:2]:
                 imgArray[x] = cv2.resize(imgArray[x], (0, 0), None, scale, scale)
             else:
-                imgArray[x] = cv2.resize(imgArray[x], (imgArray[0].shape[1], imgArray[0].shape[0]), None,scale, scale)
+                imgArray[x] = cv2.resize(imgArray[x], (imgArray[0].shape[1], imgArray[0].shape[0]), None, scale, scale)
             if len(imgArray[x].shape) == 2: imgArray[x] = cv2.cvtColor(imgArray[x], cv2.COLOR_GRAY2BGR)
-        hor= np.hstack(imgArray)
+        hor = np.hstack(imgArray)
         ver = hor
     return ver
 
-def drawLines(img,lane_curve):
+
+def drawLines(img, lane_curve):
     myWidth = img.shape[1]
     myHeight = img.shape[0]
-    print(myWidth,myHeight)
+    print(myWidth, myHeight)
     for x in range(-30, 30):
         w = myWidth // 20
         cv2.line(img, (w * x + int(lane_curve // 100), myHeight - 30),

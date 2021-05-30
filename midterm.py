@@ -27,6 +27,45 @@ while True:
         pass
 
     obstacle = car.get_obstacle()
+    if obstacle == STOP:
+        car.right_angle_turn(90)
+        car.smooth_left()
+        time.sleep(0.5)
+        while True:
+            car.forward(50)
+            trace = car.get_trace()
+            obstacle = car.get_obstacle()
+            if obstacle == RIGHT or trace == LEFT:
+                car.right()
+            elif trace == LEFT:
+                car.left()
+            elif trace == FORWARD:
+                car.forward(speed)
+            elif trace == STOP:
+                break
+        car.stop()
+        car.left_angle_turn(90)
+        temp_trace_counter = 0
+        while True:
+            car.forward(50)
+            trace = car.get_trace()
+            if trace in [LEFT, RIGHT]:
+                temp_trace_counter = + 1
+            if trace in [LEFT, RIGHT, STOP] and temp_trace_counter >= 2:
+                break
+        car.stop()
+        car.right_angle_turn(90)
+        while True:
+            trace = car.get_trace()
+            if trace == RIGHT:
+                car.right()
+            elif trace == LEFT:
+                car.left()
+            elif trace == FORWARD:
+                car.forward(speed)
+            elif trace == STOP:
+                break
+        car.stop()
 
     # if not passed_ultra_obstacle:
     #     ultra_obstacle = car.get_distance()
