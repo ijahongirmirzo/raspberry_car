@@ -51,9 +51,8 @@ while True:
         temp_trace_counter = 0
         while True:
             car.forward(50)
+            time.sleep(0.8)
             trace = car.get_trace()
-            if trace in [LEFT, RIGHT]:
-                temp_trace_counter = + 1
             if trace in [LEFT, RIGHT, STOP] and temp_trace_counter >= 2:
                 break
         car.stop()
