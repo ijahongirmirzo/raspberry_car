@@ -41,7 +41,7 @@ while True:
         car.left_angle_turn(90)
         # car.stop()
         while True:
-            car.forward(50)
+            car.forward(30)
             trace = car.get_trace()
             print(trace)
             obstacle = car.get_obstacle()
