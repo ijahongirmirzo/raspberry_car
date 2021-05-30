@@ -106,11 +106,10 @@ while True:
     if not passed_ultra_obstacle and CHECK_ULTRA_SONIC:
         ultra_obstacle = car.get_distance()
         if ultra_obstacle <= 20:
-            print('stop')
             car.stop()
             while True:
-                print('kirdi')
                 ultra_obstacle = car.get_distance()
                 if ultra_obstacle > 20:
+                    print('kirdi')
                     passed_ultra_obstacle = True
                     break
