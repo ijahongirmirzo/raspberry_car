@@ -48,8 +48,8 @@ while True:
                 car.right()
             elif trace == LEFT:
                 car.left()
-            elif trace == FORWARD:
-                car.forward(5)
+            # elif trace == FORWARD:
+            #     car.forward(5)
             elif trace == STOP:
                 break
         car.stop()
