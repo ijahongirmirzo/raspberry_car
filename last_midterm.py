@@ -30,10 +30,7 @@ while True:
             continue
         car.stop()
     obstacle = car.get_obstacle()
-    if obstacle == STOP and \
-            (passed_ultra_obstacle and
-             (not passed_first_obstacle or
-              not passed_second_obstacle)):
+    if obstacle == STOP and passed_ultra_obstacle:
         car.left_angle_turn(180)
 
 
