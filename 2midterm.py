@@ -42,17 +42,14 @@ while True:
         # car.left_angle_turn(90)
         car.stop()
         while True:
-            car.forward(50)
             trace = car.get_trace()
-            print(trace)
             obstacle = car.get_obstacle()
             if obstacle == RIGHT or trace == RIGHT:
                 car.right()
             elif trace == LEFT:
-                print('left')
                 car.left()
             elif trace == FORWARD:
-                car.forward(50)
+                car.forward(5)
             elif trace == STOP:
                 break
         car.stop()
