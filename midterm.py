@@ -32,8 +32,7 @@ while True:
         car.forward(50)
         time.sleep(0.8)
         car.left()
-        car.stop()
-        exit()
+        # car.stop()
         while True:
             car.forward(50)
             trace = car.get_trace()
