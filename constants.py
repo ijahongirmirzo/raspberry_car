@@ -30,6 +30,9 @@ MIN_SPEED = 0
 # MID_SPEED = 0
 MAX_SPEED = 50
 
+CM_PER_SECOND = 0.6
+
+
 OUTPUTS = [
     MOTOR_1,
     MOTOR_2,
