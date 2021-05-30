@@ -4,7 +4,7 @@ from car import Car
 from constants import *
 
 not_found_times = 0
-speed = 70
+speed = 60
 detection_count = 0
 stop_skip_counter = 0
 car = Car()
@@ -29,8 +29,9 @@ while True:
     obstacle = car.get_obstacle()
     if obstacle == STOP:
         car.right_angle_turn(90)
-        car.smooth_left()
+        car.forward(50)
         time.sleep(0.3)
+        car.left()
         car.stop()
         exit()
         while True:
