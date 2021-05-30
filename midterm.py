@@ -40,6 +40,7 @@ while True:
             if obstacle == RIGHT or trace == LEFT:
                 car.right()
             elif trace == LEFT:
+                print('left')
                 car.left()
             elif trace == FORWARD:
                 car.forward(speed)
