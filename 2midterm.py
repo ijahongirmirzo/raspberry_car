@@ -46,7 +46,7 @@ while True:
             trace = car.get_trace()
             print(trace)
             obstacle = car.get_obstacle()
-            if obstacle == RIGHT or trace == LEFT:
+            if obstacle == RIGHT or trace == RIGHT:
                 car.right()
             elif trace == LEFT:
                 print('left')
