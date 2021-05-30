@@ -40,7 +40,6 @@ while True:
             if obstacle == RIGHT or trace == LEFT:
                 car.right()
             elif trace == LEFT:
-                print('left')
                 car.left()
             elif trace == FORWARD:
                 car.forward(50)
@@ -81,6 +80,7 @@ while True:
                 break
         car.stop()
         time.sleep(1)
+        print('parked')
         car.backward()
         time.sleep(2)
 
