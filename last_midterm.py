@@ -36,12 +36,10 @@ while True:
               not passed_second_obstacle)):
         car.left_angle_turn(180)
 
+
     if not passed_ultra_obstacle and CHECK_ULTRA_SONIC:
-        ultra_obstacle = car.get_distance()
-        if ultra_obstacle <= 20:
+        # is_worked = False
+        while car.get_distance() <= 5:
             car.stop()
-            while True:
-                ultra_obstacle = car.get_distance()
-                if ultra_obstacle > 20:
-                    passed_ultra_obstacle = True
-                    break
+            time.sleep(3)
+            passed_ultra_obstacle = True
