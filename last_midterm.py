@@ -41,5 +41,5 @@ while True:
         # is_worked = False
         while car.get_distance() <= 5:
             car.stop()
-            time.sleep(3)
+            time.sleep(5)
             passed_ultra_obstacle = True
