@@ -4,7 +4,7 @@ from car import Car
 from constants import *
 
 not_found_times = 0
-speed = 70
+speed = 60
 detection_count = 0
 stop_skip_counter = 0
 car = Car()
@@ -105,11 +105,11 @@ while True:
 
     if not passed_ultra_obstacle and CHECK_ULTRA_SONIC:
         ultra_obstacle = car.get_distance()
-        print(ultra_obstacle)
         if ultra_obstacle <= 20:
             print('stop')
             car.stop()
             while True:
+                print('kirdi')
                 ultra_obstacle = car.get_distance()
                 if ultra_obstacle > 20:
                     passed_ultra_obstacle = True
