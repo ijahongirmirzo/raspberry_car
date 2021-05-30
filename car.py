@@ -47,7 +47,7 @@ class Car:
         wp.softPwmWrite(MOTOR_3, MAX_SPEED)
         wp.softPwmWrite(MOTOR_4, MIN_SPEED)
 
-    def backward(self, speed=1):
+    def backward(self, speed=100):
         wp.softPwmWrite(MOTOR_1, MIN_SPEED)
         wp.softPwmWrite(MOTOR_2, int(MAX_SPEED / (100 / speed)))
         wp.softPwmWrite(MOTOR_3, MIN_SPEED)

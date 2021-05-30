@@ -47,7 +47,6 @@ while True:
                 break
         car.stop()
         car.left_angle_turn(90)
-        temp_trace_counter = 0
         car.forward(50)
         time.sleep(0.5)
         while True:
@@ -83,6 +82,7 @@ while True:
         print('parked')
         car.backward()
         time.sleep(2)
+        exit()
 
     # if not passed_ultra_obstacle:
     #     ultra_obstacle = car.get_distance()
