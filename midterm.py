@@ -55,36 +55,36 @@ while True:
                 break
         car.stop()
         car.right_angle_turn(90)
-        while True:
-            trace = car.get_trace()
-            if trace == RIGHT:
-                car.right()
-            elif trace == LEFT:
-                car.left()
-            elif trace == FORWARD:
-                car.forward(50)
-            elif trace == STOP:
-                break
-        car.stop()
-        car.left_angle_turn(90)
-        started_at = time.time() #
-        while True:
-            trace = car.get_trace()
-            if trace == RIGHT:
-                car.right()
-            elif trace == LEFT:
-                car.left()
-            elif trace == FORWARD:
-                car.forward(50)
-            elif trace == STOP:
-                break
-        car.stop()
-        elapsed_time = int(time.time() - started_at)
-        time.sleep(1)
-        car.backward(50)
-        time.sleep(elapsed_time)
-        car.stop()
-        exit()
+        if not passed_first_obstacle:
+            while True:
+                trace = car.get_trace()
+                if trace == RIGHT:
+                    car.right()
+                elif trace == LEFT:
+                    car.left()
+                elif trace == FORWARD:
+                    car.forward(50)
+                elif trace == STOP:
+                    break
+            car.stop()
+            car.left_angle_turn(90)
+            started_at = time.time()  #
+            while True:
+                trace = car.get_trace()
+                if trace == RIGHT:
+                    car.right()
+                elif trace == LEFT:
+                    car.left()
+                elif trace == FORWARD:
+                    car.forward(50)
+                elif trace == STOP:
+                    break
+            car.stop()
+            elapsed_time = int(time.time() - started_at)
+            time.sleep(1)
+            car.backward(50)
+            time.sleep(elapsed_time)
+            car.left_angle_turn(90)
 
     # if not passed_ultra_obstacle:
     #     ultra_obstacle = car.get_distance()
