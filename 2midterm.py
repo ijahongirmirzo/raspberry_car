@@ -72,7 +72,7 @@ while True:
                 elif trace == LEFT:
                     car.left()
                 elif trace == FORWARD:
-                    car.forward(50)
+                    car.forward(40)
                 elif trace == STOP:
                     break
             car.stop()
@@ -86,13 +86,13 @@ while True:
                 elif trace == LEFT:
                     car.left()
                 elif trace == FORWARD:
-                    car.forward(50)
+                    car.forward(40)
                 elif trace == STOP:
                     break
             car.stop()
             elapsed_time = int(time.time() - started_at)
             time.sleep(1)
-            car.backward(50)
+            car.backward(40)
             time.sleep(elapsed_time)
             car.left_angle_turn(90)
             passed_first_obstacle = True
