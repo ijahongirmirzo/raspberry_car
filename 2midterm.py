@@ -76,7 +76,7 @@ while True:
                 elif trace == STOP:
                     break
             car.stop()
-            car.metered_backward(1)
+            # car.metered_backward(1)
             car.left_angle_turn(90)
             started_at = time.time()  #
             while True:
