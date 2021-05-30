@@ -3,6 +3,8 @@ from constants import *
 
 
 def angle_to_time(angle):
+    if angle == 180:
+        return 0.80
     if angle == 90:
         return 0.40
     elif angle == 45:

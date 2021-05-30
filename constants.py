@@ -32,7 +32,6 @@ MAX_SPEED = 50
 
 CM_PER_SECOND = 0.6
 
-
 OUTPUTS = [
     MOTOR_1,
     MOTOR_2,
@@ -49,3 +48,4 @@ INPUTS = [
     LEFT_IR,
 ]
 
+CHECK_ULTRA_SONIC = False
