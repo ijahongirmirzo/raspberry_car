@@ -49,9 +49,9 @@ while True:
         car.stop()
         car.left_angle_turn(90)
         temp_trace_counter = 0
+        car.forward(50)
+        time.sleep(0.8)
         while True:
-            car.forward(50)
-            time.sleep(0.8)
             trace = car.get_trace()
             if trace in [LEFT, RIGHT, STOP] and temp_trace_counter >= 2:
                 break
