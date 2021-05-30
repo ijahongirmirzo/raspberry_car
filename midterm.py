@@ -30,7 +30,7 @@ while True:
     if obstacle == STOP:
         car.right_angle_turn(90)
         car.smooth_left()
-        time.sleep(0.5)
+        time.sleep(0.2)
         while True:
             car.forward(50)
             trace = car.get_trace()
