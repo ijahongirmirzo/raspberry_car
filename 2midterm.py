@@ -31,7 +31,7 @@ while True:
         car.stop()
     obstacle = car.get_obstacle()
     if obstacle == STOP and \
-            (passed_ultra_obstacle or
+            (passed_ultra_obstacle or (not CHECK_ULTRA_SONIC) or
              (not passed_first_obstacle or
               not passed_second_obstacle)):
         car.backward(50)
