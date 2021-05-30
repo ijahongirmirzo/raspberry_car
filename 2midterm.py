@@ -106,9 +106,9 @@ while True:
     if not passed_ultra_obstacle and CHECK_ULTRA_SONIC:
         # is_worked = False
         while car.get_distance() <= 5:
+            car.stop()
             time.sleep(3)
             passed_ultra_obstacle = True
-            car.stop()
         # if is_worked:
         #     passed_ultra_obstacle = True
             # while True:
