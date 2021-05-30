@@ -31,6 +31,7 @@ while True:
         car.right_angle_turn(90)
         car.smooth_left()
         time.sleep(0.3)
+        exit()
         while True:
             car.forward(50)
             trace = car.get_trace()
