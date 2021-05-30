@@ -32,43 +32,61 @@ while True:
             continue
         car.stop()
     obstacle = car.get_obstacle()
-    if (obstacle == STOP and (passed_ultra_obstacle or not CHECK_ULTRA_SONIC)) and (
+    if (passed_ultra_obstacle or not CHECK_ULTRA_SONIC) and (
             passed_first_obstacle or passed_second_obstacle):
-        car.backward(50)
-        time.sleep(0.8)
-        car.right_angle_turn(45)
-        car.forward(50)
-        time.sleep(0.8)
-        # car.left_angle_turn(90)
-        car.stop()
-        while True:
-            trace = car.get_trace()
-            obstacle = car.get_obstacle()
-            if obstacle == RIGHT or trace == RIGHT:
-                car.right()
-            elif trace == LEFT:
-                car.left()
-            elif trace == FORWARD:
-                car.forward(50)
-            elif trace == STOP:
-                break
-        car.stop()
-        car.metered_backward(1)
-        car.left_angle_turn(90)
-        car.forward(50)
-        time.sleep(0.8)
-        while True:
-            trace = car.get_trace()
-            if trace in [LEFT, RIGHT, STOP]:
-                break
-        car.stop()
-        # car.metered_backward(1)
-        car.right_angle_turn(90)
-        if not passed_first_obstacle:
-            given_time = time.time()
+        if obstacle == STOP:
+            car.backward(50)
+            time.sleep(0.8)
+            car.right_angle_turn(45)
+            car.forward(50)
+            time.sleep(0.8)
+            # car.left_angle_turn(90)
+            car.stop()
             while True:
                 trace = car.get_trace()
-                if (time.time() - given_time) >= 1.5:
+                obstacle = car.get_obstacle()
+                if obstacle == RIGHT or trace == RIGHT:
+                    car.right()
+                elif trace == LEFT:
+                    car.left()
+                elif trace == FORWARD:
+                    car.forward(50)
+                elif trace == STOP:
+                    break
+            car.stop()
+            car.metered_backward(1)
+            car.left_angle_turn(90)
+            car.forward(50)
+            time.sleep(0.8)
+            while True:
+                trace = car.get_trace()
+                if trace in [LEFT, RIGHT, STOP]:
+                    break
+            car.stop()
+            # car.metered_backward(1)
+            car.right_angle_turn(90)
+            if not passed_first_obstacle:
+                given_time = time.time()
+                while True:
+                    trace = car.get_trace()
+                    if (time.time() - given_time) >= 1.5:
+                        if trace == RIGHT:
+                            car.right()
+                        elif trace == LEFT:
+                            car.left()
+                        elif trace == FORWARD:
+                            car.forward(40)
+                        elif trace == STOP:
+                            break
+                    else:
+                        if trace == [RIGHT, LEFT, STOP]:
+                            break
+                car.stop()
+                # car.metered_backward(1)
+                car.left_angle_turn(90)
+                started_at = time.time()  #
+                while True:
+                    trace = car.get_trace()
                     if trace == RIGHT:
                         car.right()
                     elif trace == LEFT:
@@ -77,34 +95,19 @@ while True:
                         car.forward(40)
                     elif trace == STOP:
                         break
-                else:
-                    if trace == [RIGHT, LEFT, STOP]:
-                        break
-            car.stop()
-            # car.metered_backward(1)
-            car.left_angle_turn(90)
-            started_at = time.time()  #
-            while True:
-                trace = car.get_trace()
-                if trace == RIGHT:
-                    car.right()
-                elif trace == LEFT:
-                    car.left()
-                elif trace == FORWARD:
-                    car.forward(40)
-                elif trace == STOP:
-                    break
-            car.stop()
-            elapsed_time = int(time.time() - started_at)
-            time.sleep(1)
-            car.backward(40)
-            time.sleep(elapsed_time)
-            car.left_angle_turn(90)
-            passed_first_obstacle = True
+                car.stop()
+                elapsed_time = int(time.time() - started_at)
+                time.sleep(1)
+                car.backward(40)
+                time.sleep(elapsed_time)
+                car.left_angle_turn(90)
+                passed_first_obstacle = True
 
     if not passed_ultra_obstacle and CHECK_ULTRA_SONIC:
         ultra_obstacle = car.get_distance()
+        print(ultra_obstacle)
         if ultra_obstacle <= 20:
+            print('stop')
             car.stop()
             while True:
                 ultra_obstacle = car.get_distance()
