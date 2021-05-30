@@ -48,4 +48,4 @@ INPUTS = [
     LEFT_IR,
 ]
 
-CHECK_ULTRA_SONIC = False
+CHECK_ULTRA_SONIC = True
