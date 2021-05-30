@@ -49,7 +49,7 @@ while True:
             elif trace == LEFT:
                 car.left()
             elif trace == FORWARD:
-                car.forward(5)
+                car.forward(20)
             elif trace == STOP:
                 break
         car.stop()
