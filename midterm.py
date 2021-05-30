@@ -43,7 +43,7 @@ while True:
                 print('left')
                 car.left()
             elif trace == FORWARD:
-                car.forward(speed)
+                car.forward(50)
             elif trace == STOP:
                 break
         car.stop()
