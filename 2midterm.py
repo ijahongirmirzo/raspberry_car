@@ -68,7 +68,7 @@ while True:
             given_time = time.time()
             while True:
                 trace = car.get_trace()
-                if (time.time() - given_time) >= 2:
+                if (time.time() - given_time) >= 1.5:
                     if trace == RIGHT:
                         car.right()
                     elif trace == LEFT:
