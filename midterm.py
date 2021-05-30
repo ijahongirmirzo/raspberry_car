@@ -88,6 +88,7 @@ while True:
             car.backward(50)
             time.sleep(elapsed_time)
             car.left_angle_turn(90)
+            passed_first_obstacle = True
 
     # if not passed_ultra_obstacle:
     #     ultra_obstacle = car.get_distance()
