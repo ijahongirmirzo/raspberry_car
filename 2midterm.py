@@ -27,7 +27,7 @@ while True:
     elif trace == STOP:
         if trace_stops <= 2:
             car.forward(50)
-            time.sleep(1)
+            time.sleep(0.8)
             trace_stops += 1
             continue
         car.stop()

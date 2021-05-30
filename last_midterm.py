@@ -26,12 +26,16 @@ while True:
         car.forward(speed)
     elif trace == STOP:
         if trace_stops <= 2:
+            car.forward(50)
+            time.sleep(0.8)
             trace_stops += 1
             continue
         car.stop()
     obstacle = car.get_obstacle()
     if obstacle == STOP and passed_ultra_obstacle:
-        car.left_angle_turn(180)
+        car.right()
+        time.sleep(1)
+        car.stop()
 
     if not passed_ultra_obstacle and CHECK_ULTRA_SONIC:
         # is_worked = False
