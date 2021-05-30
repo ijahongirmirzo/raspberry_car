@@ -62,7 +62,7 @@ while True:
             if trace in [LEFT, RIGHT, STOP]:
                 break
         car.stop()
-        car.metered_backward(1)
+        # car.metered_backward(1)
         car.right_angle_turn(90)
         if not passed_first_obstacle:
             given_time = time.time()
