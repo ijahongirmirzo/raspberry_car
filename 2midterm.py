@@ -65,16 +65,21 @@ while True:
         car.metered_backward(1)
         car.right_angle_turn(90)
         if not passed_first_obstacle:
+            given_time = time.time()
             while True:
                 trace = car.get_trace()
-                if trace == RIGHT:
-                    car.right()
-                elif trace == LEFT:
-                    car.left()
-                elif trace == FORWARD:
-                    car.forward(40)
-                elif trace == STOP:
-                    break
+                if (time.time() - given_time) >= 2:
+                    if trace == RIGHT:
+                        car.right()
+                    elif trace == LEFT:
+                        car.left()
+                    elif trace == FORWARD:
+                        car.forward(40)
+                    elif trace == STOP:
+                        break
+                else:
+                    if trace == [RIGHT, LEFT, STOP]:
+                        break
             car.stop()
             # car.metered_backward(1)
             car.left_angle_turn(90)
