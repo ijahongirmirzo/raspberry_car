@@ -43,10 +43,12 @@ while True:
         while True:
             car.forward(50)
             trace = car.get_trace()
+            print(trace)
             obstacle = car.get_obstacle()
             if obstacle == RIGHT or trace == LEFT:
                 car.right()
             elif trace == LEFT:
+                print('left')
                 car.left()
             elif trace == FORWARD:
                 car.forward(50)
