@@ -32,7 +32,7 @@ while True:
             continue
         car.stop()
     obstacle = car.get_obstacle()
-    if (passed_ultra_obstacle or not CHECK_ULTRA_SONIC) and  (
+    if (passed_ultra_obstacle or not CHECK_ULTRA_SONIC) and (
             not passed_first_obstacle or not passed_second_obstacle):
         if obstacle == STOP:
             car.backward(50)
@@ -116,11 +116,11 @@ while True:
             passed_ultra_obstacle = True
         # if is_worked:
         #     passed_ultra_obstacle = True
-            # while True:
-            #     time.sleep(1)
-            #     ultra_obstacle = car.get_distance()
-            #     if ultra_obstacle > :
-            #         print(ultra_obstacle)
-            #         print('kirdi')
-            #         passed_ultra_obstacle = True
-            #         break
+        # while True:
+        #     time.sleep(1)
+        #     ultra_obstacle = car.get_distance()
+        #     if ultra_obstacle > :
+        #         print(ultra_obstacle)
+        #         print('kirdi')
+        #         passed_ultra_obstacle = True
+        #         break

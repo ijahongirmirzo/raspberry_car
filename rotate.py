@@ -7,4 +7,4 @@ car.setup()
 # car.right_angle_turn(90)
 
 while True:
-    print(car.get_distance())
+    car.right()
