@@ -30,7 +30,7 @@ while True:
     if obstacle == STOP:
         car.right_angle_turn(90)
         car.forward(50)
-        time.sleep(0.3)
+        time.sleep(0.8)
         car.left()
         car.stop()
         exit()
