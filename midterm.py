@@ -68,6 +68,21 @@ while True:
             elif trace == STOP:
                 break
         car.stop()
+        car.left_angle_turn(90)
+        while True:
+            trace = car.get_trace()
+            if trace == RIGHT:
+                car.right()
+            elif trace == LEFT:
+                car.left()
+            elif trace == FORWARD:
+                car.forward(speed)
+            elif trace == STOP:
+                break
+        car.stop()
+        time.sleep(1)
+        car.backward()
+        time.sleep(2)
 
     # if not passed_ultra_obstacle:
     #     ultra_obstacle = car.get_distance()
