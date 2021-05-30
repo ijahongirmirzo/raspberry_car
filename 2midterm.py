@@ -110,7 +110,7 @@ while True:
             while True:
                 time.sleep(1)
                 ultra_obstacle = car.get_distance()
-                if ultra_obstacle > 4:
+                if ultra_obstacle > 20:
                     print(ultra_obstacle)
                     print('kirdi')
                     passed_ultra_obstacle = True
