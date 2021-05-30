@@ -4,7 +4,7 @@ from car import Car
 from constants import *
 
 not_found_times = 0
-speed = 60
+speed = 70
 detection_count = 0
 stop_skip_counter = 0
 car = Car()
@@ -62,11 +62,12 @@ while True:
             elif trace == LEFT:
                 car.left()
             elif trace == FORWARD:
-                car.forward(speed)
+                car.forward(50)
             elif trace == STOP:
                 break
         car.stop()
         car.left_angle_turn(90)
+        started_at = time.time() #
         while True:
             trace = car.get_trace()
             if trace == RIGHT:
@@ -74,14 +75,15 @@ while True:
             elif trace == LEFT:
                 car.left()
             elif trace == FORWARD:
-                car.forward(speed)
+                car.forward(50)
             elif trace == STOP:
                 break
         car.stop()
+        elapsed_time = int(time.time() - started_at)
         time.sleep(1)
-        print('parked')
-        car.backward()
-        time.sleep(2)
+        car.backward(50)
+        time.sleep(elapsed_time)
+        car.stop()
         exit()
 
     # if not passed_ultra_obstacle:
