@@ -48,7 +48,7 @@ while True:
         car.stop()
         car.left_angle_turn(90)
         car.forward(50)
-        time.sleep(0.5)
+        time.sleep(0.8)
         while True:
             trace = car.get_trace()
             if trace in [LEFT, RIGHT, STOP]:
