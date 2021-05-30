@@ -14,6 +14,7 @@ passed_ultra_obstacle = False
 is_returning = False
 waiting_for_last_border = False
 process_last_border = False
+trace_stops = 0
 # zebra_pass_count = 0
 while True:
     trace = car.get_trace()
@@ -24,8 +25,10 @@ while True:
     elif trace == FORWARD:
         car.forward(speed)
     elif trace == STOP:
-        pass
-
+        if trace_stops <= 2:
+            trace_stops += 1
+            continue
+        car.stop()
     obstacle = car.get_obstacle()
     if obstacle == STOP:
         car.right_angle_turn(90)
